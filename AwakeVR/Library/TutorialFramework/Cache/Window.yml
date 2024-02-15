@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentView: TableOfContent
   PreviousView: 
-  DomainReloadOccured: 0
-  IsOpen: 0
+  DomainReloadOccured: 1
+  IsOpen: 1
   AreTestsRunning: 0
   CurrentTutorial: {fileID: 0}
   PlayModeChanging: 0
