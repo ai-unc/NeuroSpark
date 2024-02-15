@@ -1,0 +1,17 @@
+{
+    "name": "Unity.Tutorials.Authoring.Editor",
+    "references": [
+        "Unity.Tutorials.Core.Editor",
+        "Unity.InternalAPIEditorBridge.007"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

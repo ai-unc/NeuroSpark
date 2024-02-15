@@ -1,0 +1,80 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: Tue Aug 20 2019 02:33:26 GMT+0000 (Coordinated Universal Time)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: po-conv\n"
+"Language: zn-TW\n"
+"Project-Id-Version: com.unity.learn.iet-framework.authoring@0.4.0-preview\n"
+
+# TODO 2.0 check these string (remember to fix all 4 files)
+msgid "The created tutorial switch page doesn't have a Tutorial assiged. Please assign one if you want to be able to continue from the tutorial to another."
+msgstr ""
+
+msgid "The created tutorial does not belong to any TutorialContainer. The Lesson Id will be 0."
+msgstr ""
+
+msgid "The created tutorial doesn't have a Window Layout assigned. Please assign one to it if you wish to utilise it."
+msgstr ""
+
+msgid "The created tutorial doesn't have a Scene assiged. Please assign one to it if you want to load a specific scene when the tutorial starts"
+msgstr ""
+
+msgid "Authoring"
+msgstr ""
+
+msgid "Debug"
+msgstr ""
+
+msgid "Run Startup Code"
+msgstr ""
+
+msgid "Restart Editor"
+msgstr ""
+
+msgid "Layout"
+msgstr ""
+
+msgid "Save Current Layout to Asset..."
+msgstr ""
+
+msgid "Load Layout..."
+msgstr ""
+
+msgid "Window Size"
+msgstr ""
+
+msgid "Arbitrary..."
+msgstr ""
+
+msgid "Localization"
+msgstr ""
+
+msgid "Extract Tutorial Structure of the Project..."
+msgstr ""
+
+msgid "Extract Localizable Strings for the Project..."
+msgstr ""
+
+msgid "Progress Tracking"
+msgstr ""
+
+msgid "Clear All Statuses"
+msgstr ""
+
+msgid "Print All Statuses"
+msgstr ""
+
+msgid "TUTORIALS"
+msgstr "教學"
+
+msgid "Do you want to clear progress of every tutorial?"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""

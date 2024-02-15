@@ -1,0 +1,219 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+MERGED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-78:12
+MERGED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-26:12
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+	package
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:70-101
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:102-148
+	android:versionCode
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:1-5:12
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:11-69
+	android:installLocation
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:2:149-189
+application
+ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:3-83
+MERGED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:35:5-76:19
+MERGED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:35:5-76:19
+MERGED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:14:5-24:19
+MERGED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:14:5-24:19
+	android:extractNativeLibs
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:35:18-50
+	android:label
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:16-48
+	android:icon
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:3:49-80
+supports-screens
+ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:3-163
+	android:largeScreens
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:78-105
+	android:smallScreens
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:21-48
+	android:normalScreens
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:49-77
+	android:xlargeScreens
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:106-134
+	android:anyDensity
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml:4:135-160
+uses-sdk
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+MERGED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:6:5-8:41
+MERGED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:6:5-8:41
+MERGED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-7:41
+MERGED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-7:41
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+		ADDED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\launcher\src\main\AndroidManifest.xml
+uses-feature#0x00030000
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:10:5-54
+	android:glEsVersion
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:10:19-51
+uses-feature#android.hardware.vulkan.version
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:5-13:36
+	android:required
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:13:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:12:9-55
+uses-feature#android.hardware.touchscreen
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:14:5-16:36
+	android:required
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:16:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:15:9-52
+uses-feature#android.hardware.touchscreen.multitouch
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:17:5-19:36
+	android:required
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:19:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:18:9-63
+uses-feature#android.hardware.touchscreen.multitouch.distinct
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:20:5-22:36
+	android:required
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:22:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:21:9-72
+uses-feature#com.oculus.feature.PASSTHROUGH
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:23:5-25:35
+	android:required
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:25:9-32
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:24:9-54
+uses-permission#com.oculus.permission.USE_ANCHOR_API
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:27:5-76
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:27:22-73
+uses-permission#com.oculus.permission.USE_SCENE
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:28:5-71
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:28:22-68
+uses-permission#com.oculus.permission.HAND_TRACKING
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:29:5-75
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:29:22-72
+uses-feature#oculus.software.handtracking
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:31:5-33:36
+	android:required
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:33:9-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:32:9-52
+meta-data#unity.splash-mode
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:36:9-38:33
+	android:value
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:38:13-30
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:37:13-45
+meta-data#unity.splash-enable
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:39:9-41:36
+	android:value
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:41:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:40:13-47
+meta-data#unity.launch-fullscreen
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:42:9-44:36
+	android:value
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:44:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:43:13-51
+meta-data#notch.config
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:45:9-47:50
+	android:value
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:47:13-47
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:46:13-40
+meta-data#unity.auto-report-fully-drawn
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:48:9-50:36
+	android:value
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:50:13-33
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:49:13-57
+activity#com.unity3d.player.UnityPlayerActivity
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:52:9-75:20
+MERGED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:15:9-19:20
+MERGED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:15:9-19:20
+	android:screenOrientation
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:59:13-49
+	android:launchMode
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:57:13-44
+	android:hardwareAccelerated
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:56:13-48
+	android:exported
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:55:13-36
+	android:resizeableActivity
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:58:13-47
+	android:configChanges
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:54:13-194
+	android:theme
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:60:13-54
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:53:13-66
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER+category:name:com.oculus.intent.category.VR
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:61:13-67:29
+category#android.intent.category.LAUNCHER
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:62:17-77
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:62:27-74
+action#android.intent.action.MAIN
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:64:17-69
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:64:25-66
+category#com.oculus.intent.category.VR
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:66:17-74
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:66:27-71
+meta-data#unityplayer.UnityActivity
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:69:13-71:40
+	android:value
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:71:17-37
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:70:17-57
+meta-data#notch_support
+ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:72:13-74:40
+	android:value
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:74:17-37
+	android:name
+		ADDED from [:unityLibrary] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\merged_manifest\release\AndroidManifest.xml:73:17-45
+uses-feature#android.hardware.vr.headtracking
+ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:9:5-12:31
+	android:version
+		ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:12:9-28
+	android:required
+		ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:9-32
+	android:name
+		ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:10:9-56
+meta-data#com.oculus.vr.focusaware
+ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:16:13-18:40
+	android:value
+		ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:18:17-37
+	android:name
+		ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:17:17-56
+meta-data#com.oculus.supportedDevices
+ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:21:9-23:52
+	android:value
+		ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:23:13-49
+	android:name
+		ADDED from [:unityLibrary:xrmanifest.androidlib] C:\Users\vondoste\AwakeVR\AwakeVR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\xrmanifest.androidlib\build\intermediates\merged_manifest\release\AndroidManifest.xml:22:13-55
