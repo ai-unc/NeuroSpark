@@ -1,12 +1,16 @@
 # AwakeVR
-Virtual Reality for Awake Cranis
+
+*** This page is a work in Progress ***<br>
+Virtual Reality for Awake Cranis.
 
 This project will use a VR headset to streamline Neuromonitoring during intracranial surgical procedures.
 
 # Table of Contents
 1. [Project Overview](#project-overview)
-2. [Setting up the Meta Quest 3](#setting-up-the-meta-quest-3)
-3. Setting up Unity dev environment
+2. [Operating Instructions](#operating-instructions)
+3. [Setting up the Meta Quest 3](#setting-up-the-meta-quest-3)
+4. [Setting up Unity dev environment](#setting-up-unity)
+5. [Loading and modifying the test content](#loading-and-modifying-tests)
 
 # Project Overview
 [Back to the Top](#table-of-contents)
@@ -17,8 +21,14 @@ We will develop a system that will present prompts for the patient on a VR heads
 
 Our project will be based around the Meta Quest 3 VR headset. We will develop a virtual environment in Unity that will enable the headset to display text and images for the patient to see and respond to in accordance with the neurosurgeons prompts. We will start off simple with a floating screen that can display messages and images, and will progress to content that is selectable through a Bluetooth foot peddle “page turner” device.
 
-# Setting up the Meta Quest 3
+# Operating Instructions
 [Back to the Top](#table-of-contents)
+This will explain:
+1. How to start the application
+2. How to use the application
+
+# Setting up the Meta Quest 3
+[Back to the Top](#table-of-contents)<br>
 Content from [Device Setup | Oculus Developers](https://developer.oculus.com/documentation/native/android/mobile-device-setup/)
 
 This topic shows how to set up a Meta Android device for running, debugging, and testing applications. The currently supported Meta devices that run Android are Meta Quest, Meta Quest 2, Meta Quest Pro, and Meta Quest 3.
@@ -26,3 +36,11 @@ This topic shows how to set up a Meta Android device for running, debugging, and
 Note: To set up an Oculus Rift for development, see the Rift Native SDK documentation.
 
 To begin development locally, you must enable developer mode for the Meta device in the companion app on your mobile phone. Before you can put your device in developer mode, you must belong to (or have created) a developer organization on the Dashboard. If developing on Windows, you will also need to install drivers to use Android Device Bridge (ADB).
+
+# Setting up Unity
+[Back to the Top](#table-of-contents)
+
+
+# Loading and Modifying tests
+[Back to the Top](#table-of-contents)
+
