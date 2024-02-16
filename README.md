@@ -19,6 +19,7 @@ Our project will be based around the Meta Quest 3 VR headset. We will develop a 
 
 # Setting up the Meta Quest 3
 [Back to the Top](#table-of-contents)
+Content from [Device Setup | Oculus Developers](https://developer.oculus.com/documentation/native/android/mobile-device-setup/)
 
 This topic shows how to set up a Meta Android device for running, debugging, and testing applications. The currently supported Meta devices that run Android are Meta Quest, Meta Quest 2, Meta Quest Pro, and Meta Quest 3.
 
