@@ -7004,8 +7004,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1435055189130710449, guid: 66d40221d132d04499855da9ce315f20, type: 3}
-      propertyPath: m_RotationFollowMode
+      propertyPath: m_MovementSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435055189130710449, guid: 66d40221d132d04499855da9ce315f20, type: 3}
+      propertyPath: m_MaxAngleAllowed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435055189130710449, guid: 66d40221d132d04499855da9ce315f20, type: 3}
+      propertyPath: m_MaxDistanceAllowed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435055189130710449, guid: 66d40221d132d04499855da9ce315f20, type: 3}
+      propertyPath: m_PositionFollowMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435055189130710449, guid: 66d40221d132d04499855da9ce315f20, type: 3}
+      propertyPath: m_RotationFollowMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435055189130710449, guid: 66d40221d132d04499855da9ce315f20, type: 3}
+      propertyPath: m_MovementSpeedVariancePercentage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435055189130710449, guid: 66d40221d132d04499855da9ce315f20, type: 3}
+      propertyPath: m_TimeUntilThresholdReachesMaxAngle
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435055189130710449, guid: 66d40221d132d04499855da9ce315f20, type: 3}
+      propertyPath: m_TimeUntilThresholdReachesMaxDistance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1454856497937655735, guid: 66d40221d132d04499855da9ce315f20, type: 3}
       propertyPath: m_VertexColorAlwaysGammaSpace
