@@ -113,6 +113,12 @@ public class GoalManager : MonoBehaviour
     [SerializeField]
     ObjectSpawner m_ObjectSpawner;
 
+    [SerializeField]
+    public int m_CardWidth;
+
+    [SerializeField]
+    public int m_CardHeight;
+
     const int k_NumberOfSurfacesTappedToCompleteGoal = 1;
     Vector3 m_TargetOffset = new Vector3(-.5f, -.25f, 1.5f);
 
@@ -122,20 +128,16 @@ public class GoalManager : MonoBehaviour
         // vondoste - Change this queue to a list, and find all the dequeues to convert to a
         // persistent looping structure instead of a step through and die structure.
         m_OnboardingGoals = new List<Goal>();  //vondoste - replace queue with list (line ~34)
-        // vondoste - maybe break this block out into a function to read m_StepList and autopopulate
-        //var welcomeGoal = new Goal(OnboardingGoals.Empty);
-        //var findSurfaceGoal = new Goal(OnboardingGoals.Empty);
-        //var tapSurfaceGoal = new Goal(OnboardingGoals.Empty);
-        //var endGoal = new Goal(OnboardingGoals.Empty);
-        //var baseGoal = new Goal(OnboardingGoals.Empty);
-        //m_OnboardingGoals.Enqueue(welcomeGoal);
-        //m_OnboardingGoals.Enqueue(findSurfaceGoal);
-        //m_OnboardingGoals.Enqueue(tapSurfaceGoal);
-        //m_OnboardingGoals.Enqueue(endGoal);
-        //m_OnboardingGoals.Enqueue(baseGoal);
         BuildGoalList();
 
         m_CurrentGoal = m_OnboardingGoals[m_CurrentGoalIndex];  // vondoste - change to list, index by m_CurrentGoalIndex
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight);
+        m_StepList[m_CurrentGoalIndex].stepObject.GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth,m_CardHeight + 150);
+        m_StepList[m_CurrentGoalIndex].stepObject.SetActive(true);
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition = new Vector2Int(150, -m_CardHeight - 20);
+        string holding = m_CurrentGoalIndex.ToString();
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Card Number: " + holding;
+        
         if (m_TapTooltip != null)
             m_TapTooltip.SetActive(false);
 
@@ -261,6 +263,7 @@ public class GoalManager : MonoBehaviour
             string holding = m_CurrentGoalIndex.ToString();
             //foreach (GoalManager.Step st in m_StepList) { }
             m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =  "Card Number: " + holding;
+
             
         }
         else
@@ -517,16 +520,19 @@ public class GoalManager : MonoBehaviour
         }
 
         m_CurrentGoal = m_OnboardingGoals[m_CurrentGoalIndex]; // vondoste - change to list, index by m_CurrentGoalIndex
-            m_StepList[m_LastGoalIndex].stepObject.SetActive(false);
-            m_StepList[m_CurrentGoalIndex].stepObject.SetActive(true);
-            m_StepButtonTextField.text = m_StepList[m_CurrentGoalIndex].buttonText;
-            m_SkipButton.SetActive(m_StepList[m_CurrentGoalIndex].includeSkipButton);
+        m_StepList[m_LastGoalIndex].stepObject.SetActive(false);
+        // vondoste - attempt to resize the card
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight);
+        m_StepList[m_CurrentGoalIndex].stepObject.GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight + 150);
+        m_StepList[m_CurrentGoalIndex].stepObject.SetActive(true);
+        m_StepButtonTextField.text = m_StepList[m_CurrentGoalIndex].buttonText;
+        m_SkipButton.SetActive(m_StepList[m_CurrentGoalIndex].includeSkipButton);
 
-            // vondoste - This accesses the indexed child object of the step object, then 
-            // retrieves the component by <component type> and then sets its attribute.
-            string holding = m_CurrentGoalIndex.ToString();
-            //foreach (GoalManager.Step st in m_StepList) { }
-            m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Card Number: " + holding;
+        // vondoste - This accesses the indexed child object of the step object, then 
+        // retrieves the component by <component type> and then sets its attribute.
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition = new Vector2Int(150, -m_CardHeight - 20);
+        string holding = m_CurrentGoalIndex.ToString();
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Card Number: " + holding;
                
     }
 
@@ -551,20 +557,24 @@ public class GoalManager : MonoBehaviour
 
         m_CurrentGoal = m_OnboardingGoals[m_CurrentGoalIndex]; // vondoste - change to list, index by m_CurrentGoalIndex
         m_StepList[m_LastGoalIndex].stepObject.SetActive(false);
+        // vondoste - attempt to resize the card
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight);
+        m_StepList[m_CurrentGoalIndex].stepObject.GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight + 150);
         m_StepList[m_CurrentGoalIndex].stepObject.SetActive(true);
         m_StepButtonTextField.text = m_StepList[m_CurrentGoalIndex].buttonText;
         m_SkipButton.SetActive(m_StepList[m_CurrentGoalIndex].includeSkipButton);
 
         // vondoste - This accesses the indexed child object of the step object, then 
         // retrieves the component by <component type> and then sets its attribute.
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition = new Vector2Int(150, -m_CardHeight - 20);
         string holding = m_CurrentGoalIndex.ToString();
-        //foreach (GoalManager.Step st in m_StepList) { }
         m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Card Number: " + holding;
 
     }
 
     /// <summary>
     /// Method <c>NextTest()</c> increments the current test counter, and sets the 
+    /// Author: vondoste
     /// </summary>
     public void  NextTest()
     {
@@ -579,13 +589,18 @@ public class GoalManager : MonoBehaviour
         m_FirstTestStep = m_TestList[m_CurrentTestIndex].testStart;
         m_LastTestStep = m_TestList[m_CurrentTestIndex].testEnd;
         m_CurrentGoalIndex = m_FirstTestStep;
+        // vondoste - attempt to resize the card
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight);
+        m_StepList[m_CurrentGoalIndex].stepObject.GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight + 150);
         m_StepList[m_CurrentGoalIndex].stepObject.SetActive(true);
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition = new Vector2Int(150, -m_CardHeight - 20);
         string holding = m_CurrentGoalIndex.ToString();
         m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Card Number: " + holding;
     }
 
     /// <summary>
     /// Method <c>PreviousTest()</c> decrements the current test counter, and sets the 
+    /// Author: vondoste
     /// </summary>
     public void PreviousTest()
     {
@@ -600,9 +615,14 @@ public class GoalManager : MonoBehaviour
                 m_FirstTestStep = m_TestList[m_CurrentTestIndex].testStart;
         m_LastTestStep = m_TestList[m_CurrentTestIndex].testEnd;
         m_CurrentGoalIndex = m_FirstTestStep;
+        // vondoste - attempt to resize the card
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight);
+        m_StepList[m_CurrentGoalIndex].stepObject.GetComponent<RectTransform>().sizeDelta = new Vector2Int(m_CardWidth, m_CardHeight + 150);
         m_StepList[m_CurrentGoalIndex].stepObject.SetActive(true);
+        m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition = new Vector2Int(150, -m_CardHeight - 20);
         string holding = m_CurrentGoalIndex.ToString();
         m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Card Number: " + holding;
     }
+
 
 }
