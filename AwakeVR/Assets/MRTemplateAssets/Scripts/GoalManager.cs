@@ -200,12 +200,32 @@ public class GoalManager : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Method <c>Update</c> is executed during every frame
+    /// Author: vondoste
+    /// </summary>
     void Update()
     {
         if (!m_AllGoalsFinished)
         {
             ProcessGoals();
+        }
+
+        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
+        {
+            PreviousTest();
+        }
+        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+        {
+            NextTest();
+        }
+        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+        {
+            PreviousGoal();
+        }
+        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+        {
+            NextGoal();
         }
 
         // Debug Input
@@ -214,6 +234,8 @@ public class GoalManager : MonoBehaviour
         {
             CompleteGoal();
         }
+
+
 #endif
     }
 
@@ -624,28 +646,6 @@ public class GoalManager : MonoBehaviour
         m_StepList[m_CurrentGoalIndex].stepObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Card Number: " + holding;
     }
 
-    /// <summary>
-    /// Method <c>FixedUpdate</c> is executed during every frame
-    /// Author: vondoste
-    /// </summary>
+    
 
-    private void FixedUpdate()
-    {
-        if (Keyboard.current.upArrowKey.wasPressedThisFrame) 
-        {
-            PreviousTest();
-        }
-        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-        {
-            NextTest();
-        }
-        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-        {
-            PreviousGoal();
-        }
-        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-        {
-            NextGoal();
-        }
-    }
 }
