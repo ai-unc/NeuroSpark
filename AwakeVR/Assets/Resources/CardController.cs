@@ -14,9 +14,13 @@ public class CardController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Initialize the card with the firs image from the current folder
+        //Initialize the card with the first image from the current folder
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
-
+        // vondoste - these lines count the number of files is the filder specified.
+        System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo("Assets/Resources/SlideSet1");
+        int filecount = dir.GetFiles().Length;
+        print(filecount);
+        
     }
     
     // Update is called once per frame
