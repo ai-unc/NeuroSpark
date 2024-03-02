@@ -808,6 +808,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7447160359341258310, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_FadeMaterial
+      value: 
+      objectReference: {fileID: 1241364538}
+    - target: {fileID: 7447160359341258310, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_PassthroughToggle
+      value: 
+      objectReference: {fileID: 659577425}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8537,6 +8545,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -17
       objectReference: {fileID: 0}
+    - target: {fileID: 3967007147395935968, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6345562874289828832, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.33
@@ -12535,6 +12547,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8058995510290338280}
     m_Modifications:
+    - target: {fileID: 1910844646688731088, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910844646688731094, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1910844646705829172, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
       propertyPath: m_IsOn
       value: 0
@@ -12570,6 +12590,10 @@ PrefabInstance:
     - target: {fileID: 1910844647153936909, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967007147395935968, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6345562874289828832, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12670,6 +12694,10 @@ PrefabInstance:
     - target: {fileID: 6345562874480820535, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
       propertyPath: m_Name
       value: List Item Boolean Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799624301738799333, guid: d0d9b0fad5cd8dd41b3e3a43240551aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

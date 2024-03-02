@@ -6,7 +6,7 @@
             "id": "3a7b40ac-d8c3-4cc9-8da5-0e8e0864f481",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "keyboard",
                     "type": "Button",
                     "id": "4b8937c5-06be-474d-8550-157c9961215a",
                     "expectedControlType": "Button",
@@ -23,7 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "keyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -34,7 +34,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "keyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -45,7 +45,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "keyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -56,7 +56,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "keyboard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

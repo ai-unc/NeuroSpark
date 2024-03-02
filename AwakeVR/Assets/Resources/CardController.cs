@@ -7,6 +7,12 @@ using UnityEngine.XR.Interaction.Toolkit.UI;
 
 public class CardController : MonoBehaviour
 {
+    [SerializeField]
+    FadeMaterial m_FadeMaterial;
+
+    [SerializeField]
+    Toggle m_PassthroughToggle;
+
     public Image slide_Image;
     private int currentSlideIndex = 1; //Current slide number. range [1 - folder amount]
     private int currentFolderSlideCount = 0;
@@ -14,6 +20,7 @@ public class CardController : MonoBehaviour
     private string[] folderNames = { "SlideSet1", "SlideSet2", "SlideSet3", "SlideSet4" }; // Names of the folders containing slides
     private string folderRoot = "Assets/Resources/";
     private string folderPath = string.Empty;
+    private bool passthroughMode;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +31,7 @@ public class CardController : MonoBehaviour
         System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
         int filecount = dir.GetFiles().Length;
         currentFolderSlideCount = filecount / 2;
+        passthroughMode = false;
         
     }
     
@@ -45,6 +53,10 @@ public class CardController : MonoBehaviour
         if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
         {
             NextSlide();
+        }
+        if (Keyboard.current.digit5Key.wasPressedThisFrame ) {
+            Debug.Log("5 key pressed!");
+            TogglePassthrough();
         }
 
     }
@@ -112,5 +124,17 @@ public class CardController : MonoBehaviour
         int filecount = dir.GetFiles().Length;
         currentFolderSlideCount = filecount / 2;
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
+    }
+
+    public void TogglePassthrough() {
+        Debug.Log("TogglePassthrough called!");
+        m_PassthroughToggle.isOn = false;
+        if (passthroughMode) {
+            m_FadeMaterial.FadeSkybox(false);
+            passthroughMode = false;
+        } else {
+            m_FadeMaterial.FadeSkybox(true);
+            passthroughMode = true;
+        }
     }
 }
