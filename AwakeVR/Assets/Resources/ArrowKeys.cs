@@ -42,7 +42,7 @@ public partial class @ArrowKeys: IInputActionCollection2, IDisposable
                     ""id"": ""65c8662a-de08-4669-88f3-ee3930bb9e02"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=2)"",
                     ""initialStateCheck"": false
                 }
             ],

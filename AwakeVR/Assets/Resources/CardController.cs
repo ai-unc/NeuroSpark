@@ -23,7 +23,8 @@ public class CardController : MonoBehaviour
     private int[] slideCounts = { 12, 6, 54, 29 };
     private string folderRoot = "Assets/Resources/";
     private string folderPath = string.Empty;
-    private bool passthroughMode;
+    private bool passthroughMode = false;
+    private bool slideVisible = true;
     private ArrowKeys playerInputActions;
 
     private void Awake() {
@@ -41,7 +42,8 @@ public class CardController : MonoBehaviour
                 TogglePassthrough();
             }
             if (keyPressed.name == "downArrow") {
-                Debug.Log("Down Arrow long-pressed!");                
+                Debug.Log("Down Arrow long-pressed!");
+                ToggleSlideVisibility();
             }
             if (keyPressed.name == "leftArrow") {
                 Debug.Log("Left Arrow long-pressed!");                
@@ -174,6 +176,16 @@ public class CardController : MonoBehaviour
             // m_PassthroughToggle.enabled = true;
             passthroughMode = true;
             // this.transform.GetComponentInChildren<Canvas>().enabled = passthroughMode;
+        }
+    }
+
+    public void ToggleSlideVisibility() {
+        if (slideVisible) {
+            this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;
+            slideVisible = false;
+        } else {
+            this.transform.GetComponentInChildren<CanvasGroup>().alpha = 1;
+            slideVisible = true;
         }
     }
 }
