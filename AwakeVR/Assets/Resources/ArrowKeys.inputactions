@@ -2,16 +2,25 @@
     "name": "ArrowKeys",
     "maps": [
         {
-            "name": "ArrowKeys",
+            "name": "Keyboard",
             "id": "3a7b40ac-d8c3-4cc9-8da5-0e8e0864f481",
             "actions": [
                 {
-                    "name": "keyboard",
+                    "name": "Arrows",
                     "type": "Button",
                     "id": "4b8937c5-06be-474d-8550-157c9961215a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LongArrows",
+                    "type": "Button",
+                    "id": "65c8662a-de08-4669-88f3-ee3930bb9e02",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
@@ -23,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "keyboard",
+                    "action": "Arrows",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -34,7 +43,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "keyboard",
+                    "action": "Arrows",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -45,7 +54,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "keyboard",
+                    "action": "Arrows",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -56,7 +65,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "keyboard",
+                    "action": "Arrows",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce647495-4def-4b72-830f-66c5217f10f3",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LongArrows",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5243fc71-b7b9-440e-92ce-e8fed7e2e853",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LongArrows",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ae04f48-4b76-4c86-b035-427ecd549224",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LongArrows",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f7e7ef7-b0b3-4cfd-a38c-a127d5b18c20",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LongArrows",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -450,6 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StepList: []
+  m_TestList: []
   m_StepButtonTextField: {fileID: 0}
   m_SkipButton: {fileID: 0}
   m_LearnButton: {fileID: 0}
@@ -464,6 +465,8 @@ MonoBehaviour:
   m_VideoPlayerToggle: {fileID: 0}
   m_ARPlaneManager: {fileID: 2074947109}
   m_ObjectSpawner: {fileID: 0}
+  m_CardWidth: 0
+  m_CardHeight: 0
 --- !u!1 &4770136204441838708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +1994,14 @@ PrefabInstance:
     - target: {fileID: 6766468454777503201, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936238204546681212, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.0035
+      objectReference: {fileID: 0}
+    - target: {fileID: 7202421930936276471, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.0035
       objectReference: {fileID: 0}
     - target: {fileID: 7608579954974633796, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
       propertyPath: m_Enabled

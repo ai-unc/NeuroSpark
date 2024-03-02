@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 
@@ -15,12 +17,63 @@ public class CardController : MonoBehaviour
 
     public Image slide_Image;
     private int currentSlideIndex = 1; //Current slide number. range [1 - folder amount]
-    private int currentFolderSlideCount = 0;
+    // private int currentFolderSlideCount = 5;
     private int currentFolderIndex = 0; //Current folder index [0-3]
     private string[] folderNames = { "SlideSet1", "SlideSet2", "SlideSet3", "SlideSet4" }; // Names of the folders containing slides
+    private int[] slideCounts = { 12, 6, 54, 29 };
     private string folderRoot = "Assets/Resources/";
     private string folderPath = string.Empty;
     private bool passthroughMode;
+    private ArrowKeys playerInputActions;
+
+    private void Awake() {
+        playerInputActions = new ArrowKeys();
+        playerInputActions.Keyboard.Enable();
+        playerInputActions.Keyboard.Arrows.performed += Arrows_performed;
+        playerInputActions.Keyboard.LongArrows.performed += Long_Arrows_performed;
+    }
+
+    private void Long_Arrows_performed(InputAction.CallbackContext context) {
+            if (context.performed) {            
+            InputControl keyPressed = context.control;
+            if (keyPressed.name == "upArrow") {
+                Debug.Log("Up Arrow long-pressed!");
+                TogglePassthrough();
+            }
+            if (keyPressed.name == "downArrow") {
+                Debug.Log("Down Arrow long-pressed!");                
+            }
+            if (keyPressed.name == "leftArrow") {
+                Debug.Log("Left Arrow long-pressed!");                
+            }
+            if (keyPressed.name == "rightArrow") {
+                Debug.Log("Right Arrow long-pressed!");                
+            }
+        }
+    }
+
+    private void Arrows_performed(InputAction.CallbackContext context) {
+        if (context.performed) {             
+            InputControl keyPressed = context.control;
+            if (keyPressed.name == "upArrow" ) {
+                Debug.Log("Up Arrow pressed!");
+                PreviousFolder();
+            }
+            if (keyPressed.name == "downArrow") {
+                Debug.Log("Down Arrow pressed!");
+                NextFolder();
+            }
+            if (keyPressed.name == "leftArrow") {
+                Debug.Log("Left Arrow pressed!");
+                PreviousSlide();
+            }
+            if (keyPressed.name == "rightArrow") {
+                Debug.Log("Right Arrow pressed!");
+                NextSlide();
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,32 +81,15 @@ public class CardController : MonoBehaviour
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
         // vondoste - these lines count the number of files is the filder specified.
         folderPath = folderRoot + folderNames[currentFolderIndex];
-        System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
-        int filecount = dir.GetFiles().Length;
-        currentFolderSlideCount = filecount / 2;
+        // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
+        // int filecount = dir.GetFiles().Length;
+        // currentFolderSlideCount = filecount / 2;
         passthroughMode = false;
         
     }
     
     // Update is called once per frame
-    void Update()
-    {
-        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-        {
-            PreviousFolder();
-        }
-        if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-        {
-            NextFolder();
-        }
-        if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-        {
-            PreviousSlide();
-        }
-        if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-        {
-            NextSlide();
-        }
+    void Update() {       
         if (Keyboard.current.digit5Key.wasPressedThisFrame ) {
             Debug.Log("5 key pressed!");
             TogglePassthrough();
@@ -79,7 +115,7 @@ public class CardController : MonoBehaviour
     public void NextSlide()
     {
         currentSlideIndex++;
-        if (currentSlideIndex > currentFolderSlideCount) {
+        if (currentSlideIndex > slideCounts[currentFolderIndex]) {
             currentSlideIndex = 1;
         }
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
@@ -90,7 +126,7 @@ public class CardController : MonoBehaviour
         currentSlideIndex--;
         if (currentSlideIndex < 1)
         {
-            currentSlideIndex = currentFolderSlideCount;
+            currentSlideIndex = slideCounts[currentFolderIndex];
         }
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
 
@@ -105,9 +141,9 @@ public class CardController : MonoBehaviour
         }
         currentSlideIndex = 1;
         folderPath = folderRoot + folderNames[currentFolderIndex];
-        System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
-        int filecount = dir.GetFiles().Length;
-        currentFolderSlideCount = filecount / 2;
+        // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
+        // int filecount = dir.GetFiles().Length;
+        // currentFolderSlideCount = filecount / 2;
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
         
     }
@@ -120,21 +156,24 @@ public class CardController : MonoBehaviour
         }
         currentSlideIndex = 1;
         folderPath = folderRoot + folderNames[currentFolderIndex];
-        System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
-        int filecount = dir.GetFiles().Length;
-        currentFolderSlideCount = filecount / 2;
+        // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
+        // int filecount = dir.GetFiles().Length;
+        // currentFolderSlideCount = filecount / 2;
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
     }
 
     public void TogglePassthrough() {
         Debug.Log("TogglePassthrough called!");
-        m_PassthroughToggle.isOn = false;
+        // m_PassthroughToggle.isOn = false;
         if (passthroughMode) {
             m_FadeMaterial.FadeSkybox(false);
+            // m_PassthroughToggle.enabled = false;
             passthroughMode = false;
         } else {
             m_FadeMaterial.FadeSkybox(true);
+            // m_PassthroughToggle.enabled = true;
             passthroughMode = true;
+            // this.transform.GetComponentInChildren<Canvas>().enabled = passthroughMode;
         }
     }
 }
