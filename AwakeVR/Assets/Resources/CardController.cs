@@ -31,7 +31,7 @@ public class CardController : MonoBehaviour
         playerInputActions = new ArrowKeys();
         playerInputActions.Keyboard.Enable();
         playerInputActions.Keyboard.Arrows.performed += Arrows_performed;
-        playerInputActions.Keyboard.LongArrows.performed += Long_Arrows_performed;
+        // playerInputActions.Keyboard.LongArrows.performed += Long_Arrows_performed;
     }
 
     private void Long_Arrows_performed(InputAction.CallbackContext context) {
@@ -59,7 +59,8 @@ public class CardController : MonoBehaviour
             InputControl keyPressed = context.control;
             if (keyPressed.name == "upArrow" ) {
                 Debug.Log("Up Arrow pressed!");
-                PreviousFolder();
+                //PreviousFolder();
+                TogglePassthrough();
             }
             if (keyPressed.name == "downArrow") {
                 Debug.Log("Down Arrow pressed!");
@@ -169,12 +170,14 @@ public class CardController : MonoBehaviour
         // m_PassthroughToggle.isOn = false;
         if (passthroughMode) {
             m_FadeMaterial.FadeSkybox(false);
+            this.transform.GetComponentInChildren<CanvasGroup>().alpha = 1;
             // m_PassthroughToggle.enabled = false;
             passthroughMode = false;
         } else {
             m_FadeMaterial.FadeSkybox(true);
             // m_PassthroughToggle.enabled = true;
             passthroughMode = true;
+            this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;
             // this.transform.GetComponentInChildren<Canvas>().enabled = passthroughMode;
         }
     }
