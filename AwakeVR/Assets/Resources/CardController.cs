@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.UI;
+using UnityEngine.Networking; // For UnityWebRequest
 
 public class CardController : MonoBehaviour
 {
@@ -22,14 +23,15 @@ public class CardController : MonoBehaviour
     private string[] folderNames = { "SlideSet1", "SlideSet2", "SlideSet3", "SlideSet4" }; // Names of the folders containing slides
     private int[] slideCounts = { 12, 6, 54, 29 };
     private string questFolderRoot = "sdcard/Documents";
-    private string desktopFolderRoot = "Assets/Resources";
+    private string desktopFolderRoot = "/Assets/Resources";
     private string folderRoot = string.Empty;
-    private string folderPath = string.Empty;
+    /*private string folderPath = string.Empty;*/
     private bool passthroughMode = false;
     private bool slideVisible = true;
     private ArrowKeys playerInputActions;
 
-    private void Awake() {
+    private void Awake()
+    {
         playerInputActions = new ArrowKeys();
         playerInputActions.Keyboard.Enable();
         playerInputActions.Keyboard.Arrows.performed += Arrows_performed;
@@ -40,22 +42,28 @@ public class CardController : MonoBehaviour
     /// Method <c>Long_Arrows_performed</c> is an event handler for long presses of the arrow keys.
     /// </summary>
     /// <param name="context">Points back to the action input event to be handled.</param>
-    private void Long_Arrows_performed(InputAction.CallbackContext context) {
-            if (context.performed) {            
+    private void Long_Arrows_performed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             InputControl keyPressed = context.control;
-            if (keyPressed.name == "upArrow") {
+            if (keyPressed.name == "upArrow")
+            {
                 Debug.Log("Up Arrow long-pressed!");
                 TogglePassthrough();
             }
-            if (keyPressed.name == "downArrow") {
+            if (keyPressed.name == "downArrow")
+            {
                 Debug.Log("Down Arrow long-pressed!");
                 ToggleSlideVisibility();
             }
-            if (keyPressed.name == "leftArrow") {
-                Debug.Log("Left Arrow long-pressed!");                
+            if (keyPressed.name == "leftArrow")
+            {
+                Debug.Log("Left Arrow long-pressed!");
             }
-            if (keyPressed.name == "rightArrow") {
-                Debug.Log("Right Arrow long-pressed!");                
+            if (keyPressed.name == "rightArrow")
+            {
+                Debug.Log("Right Arrow long-pressed!");
             }
         }
     }
@@ -64,23 +72,29 @@ public class CardController : MonoBehaviour
     /// Method <c>Arrows_performed</c> is an event handler for normal presses of the arrow keys.
     /// </summary>
     /// <param name="context">points back to the action input event to be handled.</param> 
-    private void Arrows_performed(InputAction.CallbackContext context) {
-        if (context.performed) {             
+    private void Arrows_performed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
             InputControl keyPressed = context.control;
-            if (keyPressed.name == "upArrow" ) {
+            if (keyPressed.name == "upArrow")
+            {
                 Debug.Log("Up Arrow pressed!");
                 TogglePassthrough();
                 ToggleSlideVisibility();
             }
-            if (keyPressed.name == "downArrow") {
+            if (keyPressed.name == "downArrow")
+            {
                 Debug.Log("Down Arrow pressed!");
                 NextFolder();
             }
-            if (keyPressed.name == "leftArrow") {
+            if (keyPressed.name == "leftArrow")
+            {
                 Debug.Log("Left Arrow pressed!");
                 PreviousSlide();
             }
-            if (keyPressed.name == "rightArrow") {
+            if (keyPressed.name == "rightArrow")
+            {
                 Debug.Log("Right Arrow pressed!");
                 NextSlide();
             }
@@ -92,35 +106,41 @@ public class CardController : MonoBehaviour
     /// passthrough mode, slide visibility, and set the file path for the first test
     /// folder before displaying the first slide in the first test.
     /// </summary>
-    void Start() {
+    void Start()
+    {
         // vondoste - This clause determines if the app is running on a computer
         // or on another type of device, and selects either the Unity laptop 
         // root directory, or the root filepath of the Quest3 device.
-        if (SystemInfo.deviceType == DeviceType.Desktop) {
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
             folderRoot = desktopFolderRoot;
-        } else {
+        }
+        else
+        {
             folderRoot = questFolderRoot;
         }
-        folderPath = folderRoot + folderNames[currentFolderIndex];
+
         //Initialize the card with the first image from the current folder
-            // vondoste - these lines count the number of files is the filder specified.
-            // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
-            // int filecount = dir.GetFiles().Length;
-            // currentFolderSlideCount = filecount / 2;
+        // vondoste - these lines count the number of files is the filder specified.
+        // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
+        // int filecount = dir.GetFiles().Length;
+        // currentFolderSlideCount = filecount / 2;
         passthroughMode = false;
         slideVisible = true;
         Debug.Log(SystemInfo.deviceType);
-        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
+        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
     }
-    
+
     /// <summary>
     /// Method <c>Update()</c> is called once per frame - tasks that need to be 
     /// constantly updated go here.
     /// </summary>
-    void Update() {  
+    void Update()
+    {
         // vondoste - this line is querying the keyboard to see if 5 was pressed.  
         // not going to use this, but it's instructive.
-        if (Keyboard.current.digit5Key.wasPressedThisFrame ) {
+        if (Keyboard.current.digit5Key.wasPressedThisFrame)
+        {
             Debug.Log("5 key pressed!");
             TogglePassthrough();
         }
@@ -132,21 +152,59 @@ public class CardController : MonoBehaviour
     /// </summary>
     /// <param name="slideIndex">The index of the current slide.</param>
     /// <param name="folderName">The name of the folder that contains the current test.</param>
-    void ShowSlide(int slideIndex, string folderName) 
+    /// <param name="folderRoot"></param>
+    void ShowSlide(int slideIndex, string folderName, string folderRoot)
     {
-        string imageName = "Slide" + slideIndex;
-        folderPath = folderName + "/" + imageName;
-        
-        //Load the image from the specified folder
-        Sprite spriteImage = Resources.Load<Sprite>(folderPath); //NOTE: NEED A RESOURCES FOLDER IN ASSETS
 
-        if(spriteImage != null){
-            //Set the image on the card
-            slide_Image.sprite = spriteImage;
-        }else{
-            Debug.LogError("Image not Found: " + folderPath);
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            string imageName = "Slide" + slideIndex;
+            string folderPath = folderName + "/" + imageName;
+
+            //Load the image from the specified folder
+            Sprite spriteImage = Resources.Load<Sprite>(folderPath); //NOTE: NEED A RESOURCES FOLDER IN ASSETS
+
+            if (spriteImage != null)
+            {
+                //Set the image on the card
+                slide_Image.sprite = spriteImage;
+            }
+            else
+            {
+                Debug.LogError("Image not Found: " + folderPath);
+            }
+
+        } else 
+        {
+            string imageName = "Slide" + slideIndex + ".jpg";
+            string folderPath = System.IO.Path.Combine(folderRoot, folderName);
+            string imagePath = System.IO.Path.Combine(folderPath, imageName);
+
+            // Load image from file
+            byte[] imageData = System.IO.File.ReadAllBytes(imagePath);
+            Texture2D texture = new Texture2D(1, 1);
+            texture.LoadImage(imageData);
+
+            // Convert texture to sprite
+            Sprite spriteImage = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
+
+            if (spriteImage != null)
+            {
+                // Set the image on the card
+                slide_Image.sprite = spriteImage;
+            }
+            else
+            {
+                Debug.LogError("Image not Found: " + folderPath);
+
+            }
         }
-    } 
+            
+
+
+
+    }
+
 
     /// <summary>
     /// Method <c>NextSlide()</c> displays the next slide in the directory,
@@ -155,10 +213,11 @@ public class CardController : MonoBehaviour
     public void NextSlide()
     {
         currentSlideIndex++;
-        if (currentSlideIndex > slideCounts[currentFolderIndex]) {
+        if (currentSlideIndex > slideCounts[currentFolderIndex])
+        {
             currentSlideIndex = 1;
         }
-        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
+        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
     }
 
     /// <summary>
@@ -172,7 +231,7 @@ public class CardController : MonoBehaviour
         {
             currentSlideIndex = slideCounts[currentFolderIndex];
         }
-        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
+        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
 
 
     }
@@ -185,16 +244,17 @@ public class CardController : MonoBehaviour
     public void NextFolder()
     {
         currentFolderIndex++;
-        if (currentFolderIndex >= folderNames.Length) {
+        if (currentFolderIndex >= folderNames.Length)
+        {
             currentFolderIndex = 0;
         }
         currentSlideIndex = 1;
-        folderPath = folderRoot + folderNames[currentFolderIndex];
+        //folderPath = folderRoot + folderNames[currentFolderIndex];
         // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
         // int filecount = dir.GetFiles().Length;
         // currentFolderSlideCount = filecount / 2;
-        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
-        
+        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
+
     }
 
     /// <summary>
@@ -206,27 +266,32 @@ public class CardController : MonoBehaviour
     public void PreviousFolder()
     {
         currentFolderIndex--;
-        if (currentFolderIndex < 0) {
+        if (currentFolderIndex < 0)
+        {
             currentFolderIndex = folderNames.Length - 1;
         }
         currentSlideIndex = 1;
-        folderPath = folderRoot + folderNames[currentFolderIndex];
+        /*folderPath = folderRoot + folderNames[currentFolderIndex];*/
         // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
         // int filecount = dir.GetFiles().Length;
         // currentFolderSlideCount = filecount / 2;
-        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex]);
+        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
     }
 
     /// <summary>
     /// Method <c>TogglePassthrough</c> sets the FadeSkybox attribute to the opposite state
     /// of the boolean variable passthroughMode, then toggles the variable.
     /// </summary>
-    public void TogglePassthrough() {
+    public void TogglePassthrough()
+    {
         Debug.Log("TogglePassthrough called!");
-        if (passthroughMode) {
+        if (passthroughMode)
+        {
             m_FadeMaterial.FadeSkybox(false);
             passthroughMode = false;
-        } else {
+        }
+        else
+        {
             m_FadeMaterial.FadeSkybox(true);
             passthroughMode = true;
         }
@@ -239,11 +304,15 @@ public class CardController : MonoBehaviour
     /// If slideVisible is false, it sets the alpha attribute to 1 to make the 
     /// canvas visible, and toggles slideVisible.
     /// </summary>
-    public void ToggleSlideVisibility() {
-        if (slideVisible) {
+    public void ToggleSlideVisibility()
+    {
+        if (slideVisible)
+        {
             this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;
             slideVisible = false;
-        } else {
+        }
+        else
+        {
             this.transform.GetComponentInChildren<CanvasGroup>().alpha = 1;
             slideVisible = true;
         }
