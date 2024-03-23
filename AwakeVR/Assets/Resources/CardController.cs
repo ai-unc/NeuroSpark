@@ -6,15 +6,19 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.UI;
-using UnityEngine.Networking; // For UnityWebRequest
+using UnityEngine.Networking;
+using TMPro; // For UnityWebRequest
 
 public class CardController : MonoBehaviour
 {
-    [SerializeField]
-    FadeMaterial m_FadeMaterial;
+    [SerializeField] FadeMaterial m_FadeMaterial;
 
-    [SerializeField]
-    Toggle m_PassthroughToggle;
+    [SerializeField] Toggle m_PassthroughToggle;
+
+    [SerializeField] GameObject m_ControllerPositionGUI;
+
+    //[SerializeField]
+    //Transform m_text;
 
     public Image slide_Image;
     private int currentSlideIndex = 1; //Current slide number. range [1 - folder amount]
@@ -29,21 +33,23 @@ public class CardController : MonoBehaviour
     private bool passthroughMode = false;
     private bool slideVisible = true;
     private ArrowKeys playerInputActions;
+    private MRTemplateInputActions leftPositionProperty;
+    private Vector3 position;
 
-    private void Awake()
-    {
+    private void Awake() {
         playerInputActions = new ArrowKeys();
         playerInputActions.Keyboard.Enable();
         playerInputActions.Keyboard.Arrows.performed += Arrows_performed;
         // playerInputActions.Keyboard.LongArrows.performed += Long_Arrows_performed;
+        leftPositionProperty = new MRTemplateInputActions();
+        m_ControllerPositionGUI.SetActive(false);
     }
 
     /// <summary>
     /// Method <c>Long_Arrows_performed</c> is an event handler for long presses of the arrow keys.
     /// </summary>
     /// <param name="context">Points back to the action input event to be handled.</param>
-    private void Long_Arrows_performed(InputAction.CallbackContext context)
-    {
+    private void Long_Arrows_performed(InputAction.CallbackContext context) {
         if (context.performed)
         {
             InputControl keyPressed = context.control;
@@ -72,8 +78,7 @@ public class CardController : MonoBehaviour
     /// Method <c>Arrows_performed</c> is an event handler for normal presses of the arrow keys.
     /// </summary>
     /// <param name="context">points back to the action input event to be handled.</param> 
-    private void Arrows_performed(InputAction.CallbackContext context)
-    {
+    private void Arrows_performed(InputAction.CallbackContext context) {
         if (context.performed)
         {
             InputControl keyPressed = context.control;
@@ -144,6 +149,10 @@ public class CardController : MonoBehaviour
             Debug.Log("5 key pressed!");
             TogglePassthrough();
         }
+
+        //position = leftPositionProperty.LeftHand.PalmPosition.ReadValue<Vector3>();
+        //Debug.Log(m_text.GetChild(0).GetComponent<TextMeshPro>().text);
+        //m_text.transform.GetComponent<TextMeshPro>().text = position.ToString();
 
     }
 
@@ -284,15 +293,16 @@ public class CardController : MonoBehaviour
     /// </summary>
     public void TogglePassthrough()
     {
-        Debug.Log("TogglePassthrough called!");
         if (passthroughMode)
         {
             m_FadeMaterial.FadeSkybox(false);
+            m_ControllerPositionGUI.SetActive(false);
             passthroughMode = false;
         }
         else
         {
             m_FadeMaterial.FadeSkybox(true);
+            m_ControllerPositionGUI.SetActive(true);
             passthroughMode = true;
         }
     }
