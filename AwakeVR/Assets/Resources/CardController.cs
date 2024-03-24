@@ -33,15 +33,15 @@ public class CardController : MonoBehaviour
     private bool passthroughMode = false;
     private bool slideVisible = true;
     private ArrowKeys playerInputActions;
-    private MRTemplateInputActions leftPositionProperty;
-    private Vector3 position;
+    // private MRTemplateInputActions leftPositionProperty;
+    // private Vector3 position;
 
     private void Awake() {
         playerInputActions = new ArrowKeys();
         playerInputActions.Keyboard.Enable();
         playerInputActions.Keyboard.Arrows.performed += Arrows_performed;
         // playerInputActions.Keyboard.LongArrows.performed += Long_Arrows_performed;
-        leftPositionProperty = new MRTemplateInputActions();
+        // leftPositionProperty = new MRTemplateInputActions();
         m_ControllerPositionGUI.SetActive(false);
     }
 
@@ -122,7 +122,8 @@ public class CardController : MonoBehaviour
         }
         else
         {
-            folderRoot = questFolderRoot;
+            // folderRoot = questFolderRoot;
+            folderRoot = desktopFolderRoot;
         }
 
         //Initialize the card with the first image from the current folder
@@ -132,7 +133,7 @@ public class CardController : MonoBehaviour
         // currentFolderSlideCount = filecount / 2;
         passthroughMode = false;
         slideVisible = true;
-        Debug.Log(SystemInfo.deviceType);
+        Debug.Log(" vondoste - device type: " + SystemInfo.deviceType);
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
     }
 
@@ -147,7 +148,7 @@ public class CardController : MonoBehaviour
         if (Keyboard.current.digit5Key.wasPressedThisFrame)
         {
             Debug.Log("5 key pressed!");
-            TogglePassthrough();
+            //TogglePassthrough();
         }
 
         //position = leftPositionProperty.LeftHand.PalmPosition.ReadValue<Vector3>();
@@ -164,14 +165,18 @@ public class CardController : MonoBehaviour
     /// <param name="folderRoot"></param>
     void ShowSlide(int slideIndex, string folderName, string folderRoot)
     {
+        // vondoste - hard-coding for testing purposes
+        // DeviceType deviceType = (SystemInfo.deviceType;
+        DeviceType deviceType = DeviceType.Desktop;
 
-        if (SystemInfo.deviceType == DeviceType.Desktop)
+        if  (deviceType == DeviceType.Desktop)
         {
             string imageName = "Slide" + slideIndex;
             string folderPath = folderName + "/" + imageName;
 
             //Load the image from the specified folder
             Sprite spriteImage = Resources.Load<Sprite>(folderPath); //NOTE: NEED A RESOURCES FOLDER IN ASSETS
+            Debug.Log("vondoste - Folderpath: " + folderPath);
 
             if (spriteImage != null)
             {
@@ -180,7 +185,7 @@ public class CardController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Image not Found: " + folderPath);
+                Debug.LogError("vondoste - Image not Found: " + folderPath);
             }
 
         } else 
@@ -188,6 +193,7 @@ public class CardController : MonoBehaviour
             string imageName = "Slide" + slideIndex + ".jpg";
             string folderPath = System.IO.Path.Combine(folderRoot, folderName);
             string imagePath = System.IO.Path.Combine(folderPath, imageName);
+            Debug.Log("vondoste - Folderpath: " + imagePath);
 
             // Load image from file
             byte[] imageData = System.IO.File.ReadAllBytes(imagePath);
@@ -204,7 +210,7 @@ public class CardController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Image not Found: " + folderPath);
+                Debug.LogError("vondoste - Image not Found: " + folderPath);
 
             }
         }

@@ -37,6 +37,7 @@ Library: C:\Users\vondoste\Documents\GitHub\AwakeVR\AwakeVR\Temp\BurstOutput\tem
 --assembly-defines=Unity.XR.Interaction.Toolkit.Samples.StarterAssets;
 --assembly-defines=Unity.XR.Management;
 --assembly-defines=Unity.XR.MetaOpenXR;
+--assembly-defines=Unity.XR.Oculus;
 --assembly-defines=Unity.XR.OpenXR;
 --assembly-defines=Unity.XR.OpenXR.Features.ConformanceAutomation;
 --assembly-defines=Unity.XR.OpenXR.Features.MetaQuestSupport;
@@ -90,6 +91,7 @@ Library: C:\Users\vondoste\Documents\GitHub\AwakeVR\AwakeVR\Temp\BurstOutput\tem
 --assembly-defines=Unity.XR.Interaction.Toolkit.Samples.StarterAssets;
 --assembly-defines=Unity.XR.Management;
 --assembly-defines=Unity.XR.MetaOpenXR;
+--assembly-defines=Unity.XR.Oculus;
 --assembly-defines=Unity.XR.OpenXR;
 --assembly-defines=Unity.XR.OpenXR.Features.ConformanceAutomation;
 --assembly-defines=Unity.XR.OpenXR.Features.MetaQuestSupport;
