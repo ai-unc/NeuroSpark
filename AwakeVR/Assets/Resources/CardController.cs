@@ -122,8 +122,7 @@ public class CardController : MonoBehaviour
         }
         else
         {
-            // folderRoot = questFolderRoot;
-            folderRoot = desktopFolderRoot;
+            folderRoot = questFolderRoot;
         }
 
         //Initialize the card with the first image from the current folder
@@ -166,8 +165,8 @@ public class CardController : MonoBehaviour
     void ShowSlide(int slideIndex, string folderName, string folderRoot)
     {
         // vondoste - hard-coding for testing purposes
-        // DeviceType deviceType = (SystemInfo.deviceType;
-        DeviceType deviceType = DeviceType.Desktop;
+        DeviceType deviceType = SystemInfo.deviceType;
+        // DeviceType deviceType = DeviceType.Desktop;
 
         if  (deviceType == DeviceType.Desktop)
         {
