@@ -15,6 +15,9 @@ public class CardController : MonoBehaviour
     [SerializeField] private Toggle m_PassthroughToggle;
     [SerializeField] private GameObject m_ControllerPositionGUI;
     [SerializeField] private Canvas m_ColorTestCanvas;
+    [SerializeField] private Canvas m_StartupMenu;
+    [SerializeField] private ControllerPositionGUI m_controllerPositonObject;
+
 
     //[SerializeField]
     //Transform m_text;
@@ -33,15 +36,13 @@ public class CardController : MonoBehaviour
     private bool slideVisible = true;
     private bool colorVisible = false;
     private ArrowKeys playerInputActions;
-    // private MRTemplateInputActions leftPositionProperty;
-    // private Vector3 position;
+    private int startupState = 0;
 
     private void Awake() {
         playerInputActions = new ArrowKeys();
         playerInputActions.Keyboard.Enable();
         playerInputActions.Keyboard.Arrows.performed += Arrows_performed;
         playerInputActions.Keyboard.LongArrows.performed += Long_Arrows_performed;
-        // leftPositionProperty = new MRTemplateInputActions();
         m_ControllerPositionGUI.SetActive(true);
     }
 
@@ -78,29 +79,50 @@ public class CardController : MonoBehaviour
     /// </summary>
     /// <param name="context">points back to the action input event to be handled.</param> 
     private void Arrows_performed(InputAction.CallbackContext context) {
-        if (context.performed)
-        {
+        if (context.performed) {
             InputControl keyPressed = context.control;
-            if (keyPressed.name == "upArrow")
-            {
+            if (keyPressed.name == "upArrow") {
                 Debug.Log("Up Arrow pressed!");
                 TogglePassthrough();
                 ToggleSlideVisibility();
             }
-            if (keyPressed.name == "downArrow")
-            {
+            if (keyPressed.name == "downArrow") {
                 Debug.Log("Down Arrow pressed!");
                 NextFolder();
             }
-            if (keyPressed.name == "leftArrow")
-            {
+            if (keyPressed.name == "leftArrow") {
                 Debug.Log("Left Arrow pressed!");
                 PreviousSlide();
             }
-            if (keyPressed.name == "rightArrow")
-            {
+            if (keyPressed.name == "rightArrow") {
+                switch (startupState) {
+                    case 0:
+                        m_controllerPositonObject.SetLeftMinY();
+                        startupState++;
+                        m_StartupMenu.GetComponent<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Press right arrow to set Left Max Y.";
+                        break;
+                    case 1:
+                        m_controllerPositonObject.SetLeftMaxY();
+                        startupState++;
+                        m_StartupMenu.GetComponent<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Press right arrow to set Right Min Y.";
+                        break;
+                    case 2:
+                        m_controllerPositonObject.SetRightMinY();
+                        startupState++;
+                        m_StartupMenu.GetComponent<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Press right arrow to set Right Max Y.";
+                        break;
+                    case 3:
+                        m_controllerPositonObject.SetRightMaxY();
+                        m_StartupMenu.GetComponent<CanvasGroup>().alpha = 0;
+                        this.transform.GetComponentInChildren<CanvasGroup>().alpha = 1;
+                        startupState++;
+                        break;                   
+                    default:
+                        NextSlide();
+                        break;
+                }
                 Debug.Log("Right Arrow pressed!");
-                NextSlide();
+                
             }
         }
     }
@@ -132,7 +154,11 @@ public class CardController : MonoBehaviour
         passthroughMode = false;
         slideVisible = true;
         Debug.Log(" vondoste - device type: " + SystemInfo.deviceType);
-        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
+        // ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
+        m_StartupMenu.GetComponent<CanvasGroup>().alpha = 1;
+        m_StartupMenu.GetComponent<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Press right arrow to set Left Min Y.";
+        m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 0;
+        this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;
     }
 
     /// <summary>
