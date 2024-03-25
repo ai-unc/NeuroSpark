@@ -11,11 +11,10 @@ using TMPro; // For UnityWebRequest
 
 public class CardController : MonoBehaviour
 {
-    [SerializeField] FadeMaterial m_FadeMaterial;
-
-    [SerializeField] Toggle m_PassthroughToggle;
-
-    [SerializeField] GameObject m_ControllerPositionGUI;
+    [SerializeField] private FadeMaterial m_FadeMaterial;
+    [SerializeField] private Toggle m_PassthroughToggle;
+    [SerializeField] private GameObject m_ControllerPositionGUI;
+    [SerializeField] private Canvas m_ColorTestCanvas;
 
     //[SerializeField]
     //Transform m_text;
@@ -32,6 +31,7 @@ public class CardController : MonoBehaviour
     /*private string folderPath = string.Empty;*/
     private bool passthroughMode = false;
     private bool slideVisible = true;
+    private bool colorVisible = false;
     private ArrowKeys playerInputActions;
     // private MRTemplateInputActions leftPositionProperty;
     // private Vector3 position;
@@ -40,9 +40,9 @@ public class CardController : MonoBehaviour
         playerInputActions = new ArrowKeys();
         playerInputActions.Keyboard.Enable();
         playerInputActions.Keyboard.Arrows.performed += Arrows_performed;
-        // playerInputActions.Keyboard.LongArrows.performed += Long_Arrows_performed;
+        playerInputActions.Keyboard.LongArrows.performed += Long_Arrows_performed;
         // leftPositionProperty = new MRTemplateInputActions();
-        m_ControllerPositionGUI.SetActive(false);
+        m_ControllerPositionGUI.SetActive(true);
     }
 
     /// <summary>
@@ -56,12 +56,10 @@ public class CardController : MonoBehaviour
             if (keyPressed.name == "upArrow")
             {
                 Debug.Log("Up Arrow long-pressed!");
-                TogglePassthrough();
             }
             if (keyPressed.name == "downArrow")
             {
                 Debug.Log("Down Arrow long-pressed!");
-                ToggleSlideVisibility();
             }
             if (keyPressed.name == "leftArrow")
             {
@@ -70,6 +68,7 @@ public class CardController : MonoBehaviour
             if (keyPressed.name == "rightArrow")
             {
                 Debug.Log("Right Arrow long-pressed!");
+                ToggleColorVisibility();
             }
         }
     }
@@ -301,13 +300,13 @@ public class CardController : MonoBehaviour
         if (passthroughMode)
         {
             m_FadeMaterial.FadeSkybox(false);
-            m_ControllerPositionGUI.SetActive(false);
+            m_ControllerPositionGUI.SetActive(true);
             passthroughMode = false;
         }
         else
         {
             m_FadeMaterial.FadeSkybox(true);
-            m_ControllerPositionGUI.SetActive(true);
+            m_ControllerPositionGUI.SetActive(false);
             passthroughMode = true;
         }
     }
@@ -325,11 +324,34 @@ public class CardController : MonoBehaviour
         {
             this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;
             slideVisible = false;
+            colorVisible = false;
+            m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 0;
         }
         else
         {
             this.transform.GetComponentInChildren<CanvasGroup>().alpha = 1;
             slideVisible = true;
+            colorVisible = false;
+            m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 0;
+        }
+    }
+
+    /// <summary>
+    /// Method <c>ToggleSlideVisibility</c> reads slideVisible, and if true, 
+    /// sets the alpha attribute of the CanvasGroup component on this object 
+    /// to 0 to make the slide canvas invisible, then sets canvasVisible to false.
+    /// If slideVisible is false, it sets the alpha attribute to 1 to make the 
+    /// canvas visible, and toggles slideVisible.
+    /// </summary>
+    public void ToggleColorVisibility() {
+        if (colorVisible) {
+            m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 0;
+            this.transform.GetComponentInChildren<CanvasGroup>().alpha = 1;
+            colorVisible = false;
+        } else {
+            m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 1;
+            this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;
+            colorVisible = true;
         }
     }
 }

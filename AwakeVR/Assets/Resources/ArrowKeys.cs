@@ -44,6 +44,15 @@ public partial class @ArrowKeys: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AltArrows"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce7b8085-6d21-4782-aa54-9ab0afb05aea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +143,50 @@ public partial class @ArrowKeys: IInputActionCollection2, IDisposable
                     ""action"": ""LongArrows"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db3e4bac-1d76-49c5-8254-e42d4a97713c"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltArrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ecde3f81-03d8-4cd9-af21-ad322ca4423c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltArrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55a2bdd5-20ab-42e0-92b2-21c760072f11"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltArrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f60f0393-56bc-4830-a577-b7744e6f4fed"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltArrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -156,6 +209,7 @@ public partial class @ArrowKeys: IInputActionCollection2, IDisposable
         m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
         m_Keyboard_Arrows = m_Keyboard.FindAction("Arrows", throwIfNotFound: true);
         m_Keyboard_LongArrows = m_Keyboard.FindAction("LongArrows", throwIfNotFound: true);
+        m_Keyboard_AltArrows = m_Keyboard.FindAction("AltArrows", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -219,12 +273,14 @@ public partial class @ArrowKeys: IInputActionCollection2, IDisposable
     private List<IKeyboardActions> m_KeyboardActionsCallbackInterfaces = new List<IKeyboardActions>();
     private readonly InputAction m_Keyboard_Arrows;
     private readonly InputAction m_Keyboard_LongArrows;
+    private readonly InputAction m_Keyboard_AltArrows;
     public struct KeyboardActions
     {
         private @ArrowKeys m_Wrapper;
         public KeyboardActions(@ArrowKeys wrapper) { m_Wrapper = wrapper; }
         public InputAction @Arrows => m_Wrapper.m_Keyboard_Arrows;
         public InputAction @LongArrows => m_Wrapper.m_Keyboard_LongArrows;
+        public InputAction @AltArrows => m_Wrapper.m_Keyboard_AltArrows;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -240,6 +296,9 @@ public partial class @ArrowKeys: IInputActionCollection2, IDisposable
             @LongArrows.started += instance.OnLongArrows;
             @LongArrows.performed += instance.OnLongArrows;
             @LongArrows.canceled += instance.OnLongArrows;
+            @AltArrows.started += instance.OnAltArrows;
+            @AltArrows.performed += instance.OnAltArrows;
+            @AltArrows.canceled += instance.OnAltArrows;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -250,6 +309,9 @@ public partial class @ArrowKeys: IInputActionCollection2, IDisposable
             @LongArrows.started -= instance.OnLongArrows;
             @LongArrows.performed -= instance.OnLongArrows;
             @LongArrows.canceled -= instance.OnLongArrows;
+            @AltArrows.started -= instance.OnAltArrows;
+            @AltArrows.performed -= instance.OnAltArrows;
+            @AltArrows.canceled -= instance.OnAltArrows;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -280,5 +342,6 @@ public partial class @ArrowKeys: IInputActionCollection2, IDisposable
     {
         void OnArrows(InputAction.CallbackContext context);
         void OnLongArrows(InputAction.CallbackContext context);
+        void OnAltArrows(InputAction.CallbackContext context);
     }
 }
