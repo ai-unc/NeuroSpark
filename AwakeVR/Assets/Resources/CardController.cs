@@ -7,7 +7,8 @@ using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 using UnityEngine.Networking;
-using TMPro; // For UnityWebRequest
+using TMPro;
+using System.IO; // For UnityWebRequest
 
 public class CardController : MonoBehaviour
 {
@@ -19,19 +20,15 @@ public class CardController : MonoBehaviour
     [SerializeField] private ControllerPositionGUI m_controllerPositonObject;
 
 
-    //[SerializeField]
-    //Transform m_text;
-
     public Image slide_Image;
     private int currentSlideIndex = 1; //Current slide number. range [1 - folder amount]
-    // private int currentFolderSlideCount = 5;
     private int currentFolderIndex = 0; //Current folder index [0-3]
-    private string[] folderNames = { "SlideSet1", "SlideSet2", "SlideSet3", "SlideSet4" }; // Names of the folders containing slides
-    private int[] slideCounts = { 12, 6, 54, 29 };
-    private string questFolderRoot = "sdcard/Documents";
-    private string desktopFolderRoot = "/Assets/Resources";
+
+    private List<string> folderNames = new List<string>();
+    private List<int> slideCounts = new List<int>();
+
     private string folderRoot = string.Empty;
-    /*private string folderPath = string.Empty;*/
+   
     private bool passthroughMode = false;
     private bool slideVisible = true;
     private bool colorVisible = false;
@@ -134,27 +131,24 @@ public class CardController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        // vondoste - This clause determines if the app is running on a computer
-        // or on another type of device, and selects either the Unity laptop 
-        // root directory, or the root filepath of the Quest3 device.
+        //Determines path to use depending on device type. 
         if (SystemInfo.deviceType == DeviceType.Desktop)
         {
-            folderRoot = desktopFolderRoot;
+            folderRoot = "/Assets/Resources";
         }
         else
         {
-            folderRoot = questFolderRoot;
+            folderRoot = "sdcard/Documents";
         }
 
-        //Initialize the card with the first image from the current folder
-        // vondoste - these lines count the number of files is the filder specified.
-        // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
-        // int filecount = dir.GetFiles().Length;
-        // currentFolderSlideCount = filecount / 2;
+        InitializeDirectory();
+
+      
         passthroughMode = false;
         slideVisible = true;
-        Debug.Log(" vondoste - device type: " + SystemInfo.deviceType);
-        // ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
+        
+        /*ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);*/
+
         m_StartupMenu.GetComponent<CanvasGroup>().alpha = 1;
         m_StartupMenu.GetComponent<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Press right arrow to set Left Min Y.";
         m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 0;
@@ -167,17 +161,7 @@ public class CardController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // vondoste - this line is querying the keyboard to see if 5 was pressed.  
-        // not going to use this, but it's instructive.
-        if (Keyboard.current.digit5Key.wasPressedThisFrame)
-        {
-            Debug.Log("5 key pressed!");
-            //TogglePassthrough();
-        }
 
-        //position = leftPositionProperty.LeftHand.PalmPosition.ReadValue<Vector3>();
-        //Debug.Log(m_text.GetChild(0).GetComponent<TextMeshPro>().text);
-        //m_text.transform.GetComponent<TextMeshPro>().text = position.ToString();
 
     }
 
@@ -189,11 +173,9 @@ public class CardController : MonoBehaviour
     /// <param name="folderRoot"></param>
     void ShowSlide(int slideIndex, string folderName, string folderRoot)
     {
-        // vondoste - hard-coding for testing purposes
-        DeviceType deviceType = SystemInfo.deviceType;
-        // DeviceType deviceType = DeviceType.Desktop;
 
-        if  (deviceType == DeviceType.Desktop)
+        if  (SystemInfo.deviceType == DeviceType.Desktop)
+
         {
             string imageName = "Slide" + slideIndex;
             string folderPath = folderName + "/" + imageName;
@@ -234,7 +216,7 @@ public class CardController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("vondoste - Image not Found: " + folderPath);
+                Debug.LogError("Image not Found: " + folderPath);
 
             }
         }
@@ -283,15 +265,11 @@ public class CardController : MonoBehaviour
     public void NextFolder()
     {
         currentFolderIndex++;
-        if (currentFolderIndex >= folderNames.Length)
+        if (currentFolderIndex >= folderNames.Count)
         {
             currentFolderIndex = 0;
         }
         currentSlideIndex = 1;
-        //folderPath = folderRoot + folderNames[currentFolderIndex];
-        // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
-        // int filecount = dir.GetFiles().Length;
-        // currentFolderSlideCount = filecount / 2;
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
 
     }
@@ -307,14 +285,11 @@ public class CardController : MonoBehaviour
         currentFolderIndex--;
         if (currentFolderIndex < 0)
         {
-            currentFolderIndex = folderNames.Length - 1;
+            currentFolderIndex = folderNames.Count - 1;
         }
         currentSlideIndex = 1;
-        /*folderPath = folderRoot + folderNames[currentFolderIndex];*/
-        // System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(folderPath);
-        // int filecount = dir.GetFiles().Length;
-        // currentFolderSlideCount = filecount / 2;
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
+
     }
 
     /// <summary>
@@ -379,5 +354,27 @@ public class CardController : MonoBehaviour
             this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;
             colorVisible = true;
         }
+    }
+
+    public void InitializeDirectory()
+    {
+        if(SystemInfo.deviceType != DeviceType.Desktop)
+        {
+            //Scan the root folder for subdirectories (set of slides)
+            string[] subDirectories = Directory.GetDirectories(folderRoot);
+
+            //Iterate through subdirectories to get folderNames and SlideCount
+            foreach (string subDirectory in subDirectories)
+            {
+                folderNames.Add(Path.GetFileName(subDirectory)); //Add folder name to list
+                int sub_count = Directory.GetFiles(subDirectory, "*.jpg").Length; //count the number of files in the subdirectory that are .jph 
+                slideCounts.Add(sub_count);
+            }
+        } else 
+        {
+            folderNames = new List<string> { "SlideSet1", "SlideSet2", "SlideSet3", "SlideSet4" }; // Names of the folders containing slides
+            slideCounts = new List<int> { 12, 6, 54, 29 };
+        }
+
     }
 }
