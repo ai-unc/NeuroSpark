@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- copy this file to: AwakeVR\Library\PackageCache\com.unity.xr.management@4.4.0\xrmanifest.androidlib/AndroidManifest.xml -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.UnityTechnologies.XR.Manifest">
+    <!-- Permission for reading from external storage --> 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> 
+    <!-- Permission for Internet access --> 
+    <uses-permission android:name="android.permission.INTERNET"/> 
+
+    <application>
+        <activity android:name="com.unity3d.player.UnityPlayerActivity">
+        </activity>
+    </application>
+</manifest>
