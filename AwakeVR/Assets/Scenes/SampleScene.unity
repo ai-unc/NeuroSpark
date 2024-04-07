@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31362706, g: 0.55057997, b: 0.8221196, a: 1}
+  m_IndirectSpecularColor: {r: 0.31340986, g: 0.5503103, b: 0.82225883, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1088,8 +1088,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 216272432896427707, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
-      propertyPath: m_RotationFollowMode
+      propertyPath: m_PositionFollowMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 216272432896427707, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_RotationFollowMode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 223923884457016221, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
       propertyPath: m_Camera
@@ -1192,6 +1196,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1040201544}
     - target: {fileID: 7447160359341258310, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 248358149}
+    - target: {fileID: 7447160359341258310, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_CardPrefab
+      value: 
+      objectReference: {fileID: 1073162474}
+    - target: {fileID: 7447160359341258310, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
       propertyPath: m_StartupMenu
       value: 
       objectReference: {fileID: 87912221}
@@ -1223,7 +1235,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8119357640482616770, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 216272432896427707, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4773430902860455743, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
@@ -1236,6 +1253,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 87912228}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4001268785620498501, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1073162475}
     - targetCorrespondingSourceObject: {fileID: 7779045660124591662, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1040201543}
@@ -4167,6 +4187,11 @@ MonoBehaviour:
       m_Calls: []
   m_SkinnedMeshRenderer: {fileID: 1291399511}
   m_BlendShapeIndex: 0
+--- !u!1 &709374928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4001268785620498501, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+  m_PrefabInstance: {fileID: 229284143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &744734200
 GameObject:
   m_ObjectHideFlags: 0
@@ -5678,6 +5703,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4773430902860455743, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
   m_PrefabInstance: {fileID: 229284143}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1073162475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709374928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_TargetOffset: {x: 0, y: -0.0375, z: 1}
+  m_FollowInLocalSpace: 0
+  m_ApplyTargetInLocalSpace: 0
+  m_MovementSpeed: 10
+  m_MovementSpeedVariancePercentage: 0.25
+  m_SnapOnEnable: 1
+  m_PositionFollowMode: 1
+  m_MinDistanceAllowed: 0.01
+  m_MaxDistanceAllowed: 0.3
+  m_TimeUntilThresholdReachesMaxDistance: 3
+  m_RotationFollowMode: 3
+  m_MinAngleAllowed: 0.1
+  m_MaxAngleAllowed: 5
+  m_TimeUntilThresholdReachesMaxAngle: 3
 --- !u!1 &1075729668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9056766771181046340, guid: 66d40221d132d04499855da9ce315f20, type: 3}
@@ -13306,33 +13358,6 @@ Transform:
   - {fileID: 2548660908743462859}
   m_Father: {fileID: 1073162474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3336959530586325922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112653732243144095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_TargetOffset: {x: 0, y: -0.0375, z: 1}
-  m_FollowInLocalSpace: 0
-  m_ApplyTargetInLocalSpace: 0
-  m_MovementSpeed: 10
-  m_MovementSpeedVariancePercentage: 0.25
-  m_SnapOnEnable: 1
-  m_PositionFollowMode: 1
-  m_MinDistanceAllowed: 0.01
-  m_MaxDistanceAllowed: 0.3
-  m_TimeUntilThresholdReachesMaxDistance: 3
-  m_RotationFollowMode: 1
-  m_MinAngleAllowed: 0.1
-  m_MaxAngleAllowed: 5
-  m_TimeUntilThresholdReachesMaxAngle: 3
 --- !u!223 &3338451779992600196
 Canvas:
   m_ObjectHideFlags: 0
@@ -14291,7 +14316,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2987163298048568237}
   - component: {fileID: 7112653732243144096}
-  - component: {fileID: 3336959530586325922}
   m_Layer: 0
   m_Name: ControllerPositionGUI
   m_TagString: Untagged

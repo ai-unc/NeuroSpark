@@ -18,6 +18,8 @@ public class CardController : MonoBehaviour
     [SerializeField] private Canvas m_ColorTestCanvas;
     [SerializeField] private Canvas m_StartupMenu;
     [SerializeField] private ControllerPositionGUI m_controllerPositonObject;
+    [SerializeField] private Transform m_Camera;
+    [SerializeField] private Transform m_CardPrefab;
 
 
     public Image slide_Image;
@@ -161,7 +163,7 @@ public class CardController : MonoBehaviour
     /// </summary>
     void Update()
     {
-
+        // m_CardPrefab.transform.rotation = m_Camera.transform.rotation;
 
     }
 
