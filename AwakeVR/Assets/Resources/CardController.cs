@@ -67,8 +67,7 @@ public class CardController : MonoBehaviour
             }
             if (keyPressed.name == "rightArrow")
             {
-                Debug.Log("Right Arrow long-pressed!");
-                ToggleColorVisibility();
+                Debug.Log("Right Arrow long-pressed!");               
             }
         }
     }
@@ -86,12 +85,22 @@ public class CardController : MonoBehaviour
                 ToggleSlideVisibility();
             }
             if (keyPressed.name == "downArrow") {
-                Debug.Log("Down Arrow pressed!");
-                NextFolder();
+                Debug.Log("Down Arrow pressed!");                
+                // NextFolder();                
+                if (colorVisible) {
+                    ToggleColorVisibility();
+                    // currentFolderIndex = -1;
+                }
+                if (!passthroughMode) {
+                    NextFolder();
+                }
+                
             }
             if (keyPressed.name == "leftArrow") {
                 Debug.Log("Left Arrow pressed!");
-                PreviousSlide();
+                if (!colorVisible && !passthroughMode) {
+                    PreviousSlide();
+                }
             }
             if (keyPressed.name == "rightArrow") {
                 switch (startupState) {
@@ -117,7 +126,9 @@ public class CardController : MonoBehaviour
                         startupState++;
                         break;                   
                     default:
-                        NextSlide();
+                        if (!colorVisible && !passthroughMode) {
+                            NextSlide();
+                        }
                         break;
                 }
                 Debug.Log("Right Arrow pressed!");
@@ -269,8 +280,12 @@ public class CardController : MonoBehaviour
         currentFolderIndex++;
         if (currentFolderIndex >= folderNames.Count)
         {
-            currentFolderIndex = 0;
+            currentFolderIndex = -1;
+            //ToggleSlideVisibility();
+            ToggleColorVisibility();
+            return;
         }
+
         currentSlideIndex = 1;
         ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
 
@@ -327,15 +342,21 @@ public class CardController : MonoBehaviour
         {
             this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;
             slideVisible = false;
-            colorVisible = false;
+            // colorVisible = false;
             m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 0;
         }
         else
         {
-            this.transform.GetComponentInChildren<CanvasGroup>().alpha = 1;
             slideVisible = true;
-            colorVisible = false;
-            m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 0;
+            if (colorVisible) {
+                this.transform.GetComponentInChildren<CanvasGroup>().alpha = 0;                
+                // colorVisible = false;
+                m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 1;
+            } else {
+                this.transform.GetComponentInChildren<CanvasGroup>().alpha = 1;                
+                // colorVisible = false;
+                m_ColorTestCanvas.GetComponent<CanvasGroup>().alpha = 0;
+            }
         }
     }
 
