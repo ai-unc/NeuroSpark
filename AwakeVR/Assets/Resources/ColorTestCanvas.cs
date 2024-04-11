@@ -9,10 +9,14 @@ using UnityEngine.EventSystems;
 public class ColorTestCanvas : MonoBehaviour
 {
 
-    [SerializeField] Button m_button1;
-    [SerializeField] Button m_button2;
-    [SerializeField] Button m_button3;
-    [SerializeField] Button m_button4;
+    [SerializeField] private Button m_button1;
+    [SerializeField] private Button m_button2;
+    [SerializeField] private Button m_button3;
+    [SerializeField] private Button m_button4;
+    [SerializeField] private TextMeshProUGUI m_button1_text;
+    [SerializeField] private TextMeshProUGUI m_button2_text;
+    [SerializeField] private TextMeshProUGUI m_button3_text;
+    [SerializeField] private TextMeshProUGUI m_button4_text;
 
     Color[] button_color = { Color.blue, Color.red, Color.green, Color.yellow, Color.gray, Color.cyan };
     HashSet<Color> usedColors = new HashSet<Color>();
@@ -24,31 +28,12 @@ public class ColorTestCanvas : MonoBehaviour
     {
 
 
-        if (m_button1 != null && m_button2 != null && m_button3 != null && m_button4 != null)
-        {
+        if (m_button1 != null && m_button2 != null && m_button3 != null && m_button4 != null) {
             Button[] buttons = { m_button1, m_button2, m_button3, m_button4 };
 
-            /*            var color_button1 = m_button1.GetComponent<Button>().colors;
-                        color_button1.normalColor = button_color[Random.Range(0, 6)];
-                        m_button1.GetComponent<Button>().colors = color_button1;
-
-                        var color_button2 = m_button2.GetComponent<Button>().colors;
-                        color_button2.normalColor = button_color[Random.Range(0, 6)];
-                        m_button2.GetComponent<Button>().colors = color_button2;
-
-                        var color_button3 = m_button3.GetComponent<Button>().colors;
-                        color_button3.normalColor = button_color[Random.Range(0, 6)];
-                        m_button3.GetComponent<Button>().colors = color_button3;
-
-                        var color_button4 = m_button4.GetComponent<Button>().colors;
-                        color_button4.normalColor = button_color[Random.Range(0, 6)];
-                        m_button4.GetComponent<Button>().colors = color_button4;*/
-
-            for (int i = 0; i < buttons.Length; i++)
-            {
+            for (int i = 0; i < buttons.Length; i++) {
                 Color newColor;
-                do
-                {
+                do {
                     newColor = button_color[Random.Range(0, button_color.Length)];
                 } while (usedColors.Contains(newColor));
 
@@ -59,9 +44,14 @@ public class ColorTestCanvas : MonoBehaviour
                 buttons[i].GetComponent<Button>().colors = colors;
 
                 //Adding listener for button click
-                buttons[i].onClick.AddListener(() => toggleButtonSelection(buttons[i]));
-                
+                //buttons[i].onClick.AddListener(() => { toggleButtonSelection(buttons[i]); });
+
             }
+            m_button1_text.text = "";
+            m_button2_text.text = "";
+            m_button3_text.text = "";
+            m_button4_text.text = "";
+
         }
 
     }
@@ -69,11 +59,13 @@ public class ColorTestCanvas : MonoBehaviour
     //Method that handles button selection behavior
     void toggleButtonSelection(Button button)
     {
+        Debug.Log("Button " + button + " Clicked!");
         // If the clicked button is already selected, deselect it
         if (selectedButton == button)
         {
             DeselectButton(button);
             selectedButton = null;
+            Debug.Log("Button " + button + " Clicked!");
         }
         // If another button is already selected, deselect it and select the clicked button
         else if (selectedButton != null)
@@ -134,6 +126,7 @@ public class ColorTestCanvas : MonoBehaviour
                 {
                     Debug.Log("Button 4 clicked");
                 });*/
+        // clickButton1();
     }
 
     void randomColor()
@@ -163,4 +156,25 @@ public class ColorTestCanvas : MonoBehaviour
             }
         }
     }
+
+    public void ClickedButton1() {
+        Debug.Log("Button 1 Clicked!");
+        m_button1_text.text = "CLICKED!";
+    }
+
+    public void ClickedButton2() {
+        Debug.Log("Button 2 Clicked!");
+        m_button2_text.text = "CLICKED!";
+    }
+
+    public void ClickedButton3() {
+        Debug.Log("Button 3 Clicked!");
+        m_button3_text.text = "CLICKED!";
+    }
+
+    public void ClickedButton4() {
+        Debug.Log("Button 4 Clicked!");
+        m_button4_text.text = "CLICKED!";
+    }
+
 }

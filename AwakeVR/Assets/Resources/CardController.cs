@@ -281,7 +281,6 @@ public class CardController : MonoBehaviour
         if (currentFolderIndex >= folderNames.Count)
         {
             currentFolderIndex = -1;
-            //ToggleSlideVisibility();
             ToggleColorVisibility();
             return;
         }
