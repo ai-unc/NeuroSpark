@@ -17,6 +17,9 @@ public class ColorTestCanvas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_button2_text;
     [SerializeField] private TextMeshProUGUI m_button3_text;
     [SerializeField] private TextMeshProUGUI m_button4_text;
+    private bool button_selected = false;
+    private IEnumerator coroutine;
+    private Coroutine coroutineInstance;
 
     Color[] button_color = { Color.blue, Color.red, Color.green, Color.yellow, Color.gray, Color.cyan };
     HashSet<Color> usedColors = new HashSet<Color>();
@@ -43,42 +46,46 @@ public class ColorTestCanvas : MonoBehaviour
                 colors.normalColor = newColor;
                 buttons[i].GetComponent<Button>().colors = colors;
 
-                //Adding listener for button click
-                //buttons[i].onClick.AddListener(() => { toggleButtonSelection(buttons[i]); });
+                // Reset button text if needed
+                TextMeshProUGUI buttonText = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
+                if (buttonText != null)
+                {
+                    buttonText.text = ""; // Change this to reset the text to its original state
+                }
 
             }
-            m_button1_text.text = "";
-            m_button2_text.text = "";
-            m_button3_text.text = "";
-            m_button4_text.text = "";
-
         }
-
     }
 
     //Method that handles button selection behavior
     void toggleButtonSelection(Button button)
     {
+        coroutine = WaitForUser(10.0f);
         Debug.Log("Button " + button + " Clicked!");
         // If the clicked button is already selected, deselect it
         if (selectedButton == button)
         {
+            StopCoroutine(coroutineInstance);
             DeselectButton(button);
             selectedButton = null;
-            Debug.Log("Button " + button + " Clicked!");
+            
         }
         // If another button is already selected, deselect it and select the clicked button
         else if (selectedButton != null)
         {
             DeselectButton(selectedButton);
+            StopCoroutine(coroutineInstance);
             SelectButton(button);
             selectedButton = button;
+            coroutineInstance = StartCoroutine(coroutine);
         }
         // If no button is selected, select the clicked button
         else
         {
             SelectButton(button);
             selectedButton = button;
+            coroutineInstance = StartCoroutine(coroutine);
+
         }
     }
 
@@ -92,6 +99,7 @@ public class ColorTestCanvas : MonoBehaviour
         {
             buttonText.text = "Selected"; 
         }
+        button_selected = true;
     }
 
     //Method to handle button deselection, provide original null string text 
@@ -105,34 +113,26 @@ public class ColorTestCanvas : MonoBehaviour
         {
             buttonText.text = ""; // Change this to reset the text to its original state
         }
+        button_selected = false;
+    }
+
+    private IEnumerator WaitForUser(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        randomColor();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*        m_button1.onClick.AddListener(() =>
-                {
-                    Debug.Log("Button 1 clicked");
-                });
-                m_button2.onClick.AddListener(() =>
-                {
-                    Debug.Log("Button 2 clicked");
-                });
-                m_button3.onClick.AddListener(() =>
-                {
-                    Debug.Log("Button 3 clicked");
-                });
-                m_button4.onClick.AddListener(() =>
-                {
-                    Debug.Log("Button 4 clicked");
-                });*/
-        // clickButton1();
+
     }
 
     void randomColor()
     {
         usedColors.Clear();
         Button[] buttons = { m_button1, m_button2, m_button3, m_button4 };
+        selectedButton = null;
 
         for (int i = 0; i < buttons.Length; i++)
         {
@@ -146,35 +146,40 @@ public class ColorTestCanvas : MonoBehaviour
 
             var colors = buttons[i].GetComponent<Button>().colors;
             colors.normalColor = newColor;
+            colors.pressedColor = newColor;
+            colors.highlightedColor = newColor;
+            colors.selectedColor = newColor;
+
             buttons[i].GetComponent<Button>().colors = colors;
 
             // Reset button text if needed
             TextMeshProUGUI buttonText = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
             if (buttonText != null)
             {
-                buttonText.text = " "; // Change this to reset the text to its original state
+                buttonText.text = ""; // Change this to reset the text to its original state
             }
         }
     }
 
     public void ClickedButton1() {
         Debug.Log("Button 1 Clicked!");
-        m_button1_text.text = "CLICKED!";
+        toggleButtonSelection(m_button1);
     }
 
     public void ClickedButton2() {
         Debug.Log("Button 2 Clicked!");
-        m_button2_text.text = "CLICKED!";
+        toggleButtonSelection(m_button2);
+
     }
 
     public void ClickedButton3() {
         Debug.Log("Button 3 Clicked!");
-        m_button3_text.text = "CLICKED!";
+        toggleButtonSelection(m_button3);
     }
 
     public void ClickedButton4() {
         Debug.Log("Button 4 Clicked!");
-        m_button4_text.text = "CLICKED!";
+        toggleButtonSelection(m_button4);
     }
 
 }
