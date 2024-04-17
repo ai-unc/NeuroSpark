@@ -39,7 +39,17 @@ To begin development locally, you must enable developer mode for the Meta device
 
 # Setting up Unity
 [Back to the Top](#table-of-contents)
+Steps for Setup
 
+The following steps are to get any developer up and running with a development environment. To make the process easier its recommended to install all the necessary software first. 
+
+1. Pull the repository into a directory
+2. Open Unity Hub and hit “add project from disk”, then locate the “AwakeVR” directory from the repository.
+3. Open the project in Unity and then load in the game scene.
+4. Within the packages locate the “XR Plugin Management” packages then the xrmanifest.xml file. Update it with the contents of “AndroidManifest.xml” that is on github.
+5. Go to build settings, swith platforms to Android, then build the project. This should generate the APK file that can be put on the VR headset.
+
+(https://www.youtube.com/watch?v=nROCxYJsI2Q)
 
 # Loading and Modifying tests
 [Back to the Top](#table-of-contents)
