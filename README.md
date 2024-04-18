@@ -11,7 +11,7 @@ This project will use a VR headset to streamline Neuromonitoring during intracra
 3. [Setting up the Meta Quest 3](#setting-up-the-meta-quest-3)
 4. [Setting up Unity dev environment](#setting-up-unity)
 5. [Loading and modifying the test content](#loading-and-modifying-tests)
-6. [Resources] (#resources)
+6. [Resources](#resources)
 
 # Project Overview
 [Back to the Top](#table-of-contents)
@@ -23,10 +23,30 @@ We will develop a system that will present prompts for the patient on a VR heads
 Our project will be based around the Meta Quest 3 VR headset. We will develop a virtual environment in Unity that will enable the headset to display text and images for the patient to see and respond to in accordance with the neurosurgeons prompts. We will start off simple with a floating screen that can display messages and images, and will progress to content that is selectable through a Bluetooth foot peddle “page turner” device.
 
 # Operating Instructions
-[Back to the Top](#table-of-contents)
-This will explain:
-1. How to start the application
-2. How to use the application
+[Back to the Top](#table-of-contents) <br>
+
+These instructions are to shows users how to install the application on a VR Headset, and how the application is intended to work on the headset. Our application does use device permissions which the steps will go through to make sure they are enabled. This is needed to access the File System on the device since AwakeVR reads the images on the device. 
+
+How to start the application:
+
+1. It strongly recommended completed the "Setting up the Meta Quest 3" section of this video, as the developer mode is needed and to have Meta Quest Developer Hub (MQDH) installed.
+2. Login into MQDH and connect your VR headset through type C cable. You most likely will need to put on the headset and enable permissions to access the devices files.
+3. Once the device has been connected you can take the built APK file and drag and drop it onto the headset. MQDH will begin installing it for you and throw an error if anything goes wrong. Once the APK is installed you can switch over to the headset device.
+4. On the Headset ensure the installed application has the necessary permissions. You can check this by going to settings> App> Installed Apps> [Application Name]> Permissions. 
+5. You can open your application now which you might find under "unknown sources" section in your list of apps.
+
+(https://youtu.be/HtkfqgOoCUs)
+
+Connecting Necessary Devices:
+1. Text
+2. Text
+3. Text
+
+
+What the application does:
+1. Ensure the necessary devices are connected. 
+2. Text
+3. Text
 
 # Setting up the Meta Quest 3
 [Back to the Top](#table-of-contents)<br>
