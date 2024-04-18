@@ -11,7 +11,8 @@ This project will use a VR headset to streamline Neuromonitoring during intracra
 3. [Setting up the Meta Quest 3](#setting-up-the-meta-quest-3)
 4. [Setting up Unity dev environment](#setting-up-unity)
 5. [Loading and modifying the test content](#loading-and-modifying-tests)
-6. [Resources](#resources)
+6. [Required Software](#Required-Software)
+7. [Resources](#resources)
 
 # Project Overview
 [Back to the Top](#table-of-contents)
@@ -27,23 +28,23 @@ Our project will be based around the Meta Quest 3 VR headset. We will develop a 
 
 These instructions are to shows users how to install the application on a VR Headset, and how the application is intended to work on the headset. Our application does use device permissions which the steps will go through to make sure they are enabled. This is needed to access the File System on the device since AwakeVR reads the images on the device. 
 
-How to start the application:
+### How to start the application:
 
 1. It strongly recommended completed the "Setting up the Meta Quest 3" section of this video, as the developer mode is needed and to have Meta Quest Developer Hub (MQDH) installed.
 2. Login into MQDH and connect your VR headset through type C cable. You most likely will need to put on the headset and enable permissions to access the devices files.
 3. Once the device has been connected you can take the built APK file and drag and drop it onto the headset. MQDH will begin installing it for you and throw an error if anything goes wrong. Once the APK is installed you can switch over to the headset device.
-4. On the Headset ensure the installed application has the necessary permissions. You can check this by going to settings> App> Installed Apps> [Application Name]> Permissions. 
+4. On the Headset ensure the installed application has the necessary permissions. You can check this by going to Settings> App> Installed Apps> [Application Name]> Permissions. 
 5. You can open your application now which you might find under "unknown sources" section in your list of apps.
 
 (https://youtu.be/HtkfqgOoCUs)
 
-Connecting Necessary Devices:
+### Connecting Necessary Devices:
 1. Text
 2. Text
 3. Text
 
 
-What the application does:
+### What the application does:
 1. Ensure the necessary devices are connected. 
 2. Text
 3. Text
@@ -73,6 +74,20 @@ The following steps are to get any developer up and running with a development e
 
 # Loading and Modifying tests
 [Back to the Top](#table-of-contents)
+
+# Required Software
+[Back to the Top](#table-of-contents) <br>
+
+This section list out all the software that is used in any other part of the README. It is recommended thay you install these before beginning any other setup. The other setup sections are meant to account for cases that are ran into with this particular project but won't go through the actual installation of them. 
+
+Install Git: https://git-scm.com/downloads
+
+Install the Unity Installer which should provide: https://unity.com/download
+* Unity Hub
+* Unity Editor version 2022.3.19f1
+* Install Visual Studio and its plugin
+
+Install Meta Quest Developer Hub: https://developer.oculus.com/downloads/package/oculus-developer-hub-win/
 
 # Resources
 [Back to the Top](#table-of-contents)<br>
