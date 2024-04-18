@@ -11,6 +11,7 @@ This project will use a VR headset to streamline Neuromonitoring during intracra
 3. [Setting up the Meta Quest 3](#setting-up-the-meta-quest-3)
 4. [Setting up Unity dev environment](#setting-up-unity)
 5. [Loading and modifying the test content](#loading-and-modifying-tests)
+6. [Resources] (#resources)
 
 # Project Overview
 [Back to the Top](#table-of-contents)
@@ -39,7 +40,6 @@ To begin development locally, you must enable developer mode for the Meta device
 
 # Setting up Unity
 [Back to the Top](#table-of-contents)
-Steps for Setup
 
 The following steps are to get any developer up and running with a development environment. To make the process easier its recommended to install all the necessary software first. 
 
@@ -53,4 +53,16 @@ The following steps are to get any developer up and running with a development e
 
 # Loading and Modifying tests
 [Back to the Top](#table-of-contents)
+
+# Resources
+[Back to the Top](#table-of-contents)<br>
+Below is a list of resources that were mentioned above or resources that could provide more guidance. Its strongly recommended that if the videos weren't helpful or if this readme wasn't enought that you go through these.
+
+Device Setup: https://developer.oculus.com/documentation/native/android/mobile-device-setup/
+
+Connect the Headset to MQDH: https://developer.oculus.com/documentation/unity/ts-odh/
+
+ADB logging: https://developer.oculus.com/documentation/unity/ts-logcat/ or https://developer.android.com/studio/debug/logcat
+
+XML file permissions (application permissions): https://source.android.com/docs/core/permissions/perms-allowlist
 
