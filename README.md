@@ -73,7 +73,26 @@ The following steps are to get any developer up and running with a development e
 (https://www.youtube.com/watch?v=nROCxYJsI2Q)
 
 # Loading and Modifying tests
-[Back to the Top](#table-of-contents)
+[Back to the Top](#table-of-contents)<br>
+This project has an amazing feature that lets users upload their own Slide Sets and watch them appear in the application! This feature is dynamic allowing the user to have as many Slide Sets as they like as long as they follow the intended format. The main intention for this feature is for users to create Powerpoint Slides or Google Slides and then have them appear on screen for users to follow along. It is both helpful for developers and future users to have in this format otherwise it would require developers to constantly rebuild the application with the new content in it. This repository has 4 core slidesets that are intended to load with the application, and a 5th for testing purposes.
+
+### General Format
+* A Slide Set must be in a folder and all the images must be in .JPG file format.
+* It does not matter what the name of the folder is for an individual Slide Set but it recommended to follow the intended naming scheme of "/SlideSet<number>/". Ex. SlideSet1/.
+* The images within a folder must be in the name scheme of /slide<number>.jpg. It was important to have some order in deciding which image will go first so we decided to have these images be read in order of their index.  Ex. /SlideSet1/Slide1.jpg or /SlideSet3/Slide10.jpg.
+* It does not matter what the image size is in the folder, they get rescaled to fit the UI card.
+* When loading the Slide Sets on to the headset they need to be in the Documents Directory.
+
+** NOTE: You can convert Powerpoint Slides to JPG images and it will automatically create a folder with the images already numbered! The only thing you might have to do is rename the folder but otherwise these can be loaded on the VR headset. **
+
+### Developer Format
+When devloping on the project you are going to generally want to follow the format above but when working in Unity's Game Scene things are a bit different. Now, Unity does allow you to run application directly on the VR Headset before finalizing a build but there can be long load times which can be an issue, and developers might not always have the VR headset with them. You should recognize in the code "Card Controller" Script that the code checks for which device its being ran on and reads directories accordingly. 
+
+* Within Unity desktop runs read the Assets > Resources folder for Slide Sets
+* The function is called InitializeDirectory()
+* There  are two Lists in which the folders and file count get stored into. Modify these to include the new folder names and amount of files for that folder:
+  * folderNames
+  * SlideCounts
 
 # Required Software
 [Back to the Top](#table-of-contents) <br>
