@@ -39,7 +39,7 @@ These instructions are to shows users how to install the application on a VR Hea
 (https://youtu.be/HtkfqgOoCUs)
 
 ### Connecting Necessary Devices:
-1. Text
+1. AirTurn BT500|S-4 - configuration and pairing instructions
 2. Text
 3. Text
 
@@ -56,6 +56,10 @@ Content from [Device Setup | Oculus Developers](https://developer.oculus.com/doc
 This topic shows how to set up a Meta Android device for running, debugging, and testing applications. The currently supported Meta devices that run Android are Meta Quest, Meta Quest 2, Meta Quest Pro, and Meta Quest 3.
 
 Note: To set up an Oculus Rift for development, see the Rift Native SDK documentation.
+
+1. Put quest 3 in development mode
+2. Install APK file
+3. Copy test file directories to the /Documents folder in the Quest 3 file system.
 
 To begin development locally, you must enable developer mode for the Meta device in the companion app on your mobile phone. Before you can put your device in developer mode, you must belong to (or have created) a developer organization on the Dashboard. If developing on Windows, you will also need to install drivers to use Android Device Bridge (ADB).
 
