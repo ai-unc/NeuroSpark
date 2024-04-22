@@ -826,6 +826,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1355742086793311027, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416635591827993005, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1529009042585322959, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
       propertyPath: m_Camera
       value: 
@@ -833,6 +841,10 @@ PrefabInstance:
     - target: {fileID: 1736354822870851241, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
       propertyPath: m_Layer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819361896623415551, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1865993560743133593, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
       propertyPath: m_Layer
@@ -870,6 +882,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1109407790274764220}
+    - target: {fileID: 3850937032015802391, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4001268785620498501, guid: 9d3d39efe7016a54d8a0d03f02dbe4b7, type: 3}
       propertyPath: m_Name
       value: Card Prefab
