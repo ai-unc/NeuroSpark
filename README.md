@@ -55,11 +55,15 @@ Content from [Device Setup | Oculus Developers](https://developer.oculus.com/doc
 
 This topic shows how to set up a Meta Android device for running, debugging, and testing applications. The currently supported Meta devices that run Android are Meta Quest, Meta Quest 2, Meta Quest Pro, and Meta Quest 3.
 
-Note: To set up an Oculus Rift for development, see the Rift Native SDK documentation.
+Note: To set up a Meta Quest 3t for development, see the Rift Native SDK documentation.
 
-1. Put quest 3 in development mode
-2. Install APK file
-3. Copy test file directories to the /Documents folder in the Quest 3 file system.
+1. Link Quest 3 with Meta Account
+2. Put quest 3 in development mode, this requires a Meta developer account.
+3. Install APK file, make sure that the app has access to the local file-system and the pre-defined boundaries.
+4. Copy test file directories to the /Documents folder in the Quest 3 file system.
+5. Pre-define the boundaries in the empty Operating Room, you won't be able to do this when the room is full of people and equipment.
+6. Pair the Quest 3 with the Bluetooth footswitch device (this device emulates a bluetooth keyboard).
+7. Calibrate the floor level before you put the device on the patient. This will impact the perceived height of the controllers above the floor and affect the range of motion display. 
 
 To begin development locally, you must enable developer mode for the Meta device in the companion app on your mobile phone. Before you can put your device in developer mode, you must belong to (or have created) a developer organization on the Dashboard. If developing on Windows, you will also need to install drivers to use Android Device Bridge (ADB).
 
@@ -68,21 +72,22 @@ To begin development locally, you must enable developer mode for the Meta device
 
 The following steps are to get any developer up and running with a development environment. To make the process easier its recommended to install all the necessary software first. 
 
-1. Pull the repository into a directory
-2. Open Unity Hub and hit “add project from disk”, then locate the “AwakeVR” directory from the repository.
-3. Open the project in Unity and then load in the game scene.
-4. Within the packages locate the “XR Plugin Management” packages then the xrmanifest.xml file. Update it with the contents of “AndroidManifest.xml” that is on github.
-5. Go to build settings, swith platforms to Android, then build the project. This should generate the APK file that can be put on the VR headset.
+1. Make sure that you have at least 15 Gigs of free disk space before you begin setting this up.
+2. Pull the repository into a directory
+3. Open Unity Hub and hit “add project from disk”, then locate the inner “AwakeVR” directory inside the repository.
+4. Open the project in Unity and then in the "Project" tab navigate to /Assets/Scenes and open SampleScene.unity.
+5. Within the packages locate the “XR Plugin Management” packages then the xrmanifest.xml file. Update it with the contents of “AndroidManifest.xml” that is on github.
+6. Go to build settings, swith platforms to Android, then build the project. This should generate the APK file that can be put on the VR headset.
 
 (https://www.youtube.com/watch?v=nROCxYJsI2Q)
 
 # Loading and Modifying tests
 [Back to the Top](#table-of-contents)<br>
-This project has an amazing feature that lets users upload their own Slide Sets and watch them appear in the application! This feature is dynamic allowing the user to have as many Slide Sets as they like as long as they follow the intended format. The main intention for this feature is for users to create Powerpoint Slides or Google Slides and then have them appear on screen for users to follow along. It is both helpful for developers and future users to have in this format otherwise it would require developers to constantly rebuild the application with the new content in it. This repository has 4 core slidesets that are intended to load with the application, and a 5th for testing purposes.
+This project has an amazing feature that lets users upload their own Slide Sets and watch them appear in the application! This feature is dynamic allowing the user to have as many Slide Sets as they like as long as they follow the intended format. The main intention for this feature is for users to create Powerpoint Slides or Google Slides and then have them appear on screen for users to follow along. It is both helpful for developers and future users to have in this format otherwise it would require developers to constantly rebuild the application with the new content in it. This repository has 4 core slidesets that are intended to load with the application, and a 5th for testing purposes. 
 
 ### General Format
 * A Slide Set must be in a folder and all the images must be in .JPG file format.
-* It does not matter what the name of the folder is for an individual Slide Set but it recommended to follow the intended naming scheme of "/SlideSet<number>/". Ex. SlideSet1/.
+* It does not matter what the name of the folder is for an individual Slide Set but it is recommended to follow the intended naming scheme of "/SlideSet<number>/". Ex. SlideSet1/.
 * The images within a folder must be in the name scheme of /slide<number>.jpg. It was important to have some order in deciding which image will go first so we decided to have these images be read in order of their index.  Ex. /SlideSet1/Slide1.jpg or /SlideSet3/Slide10.jpg.
 * It does not matter what the image size is in the folder, they get rescaled to fit the UI card.
 * When loading the Slide Sets on to the headset they need to be in the Documents Directory.
