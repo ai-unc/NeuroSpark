@@ -45,9 +45,14 @@ These instructions are to shows users how to install the application on a VR Hea
 
 
 ### What the application does:
-1. Ensure the necessary devices are connected. 
-2. Text
-3. Text
+1. Has a UI card the follows the users head position
+2. Has a motor test with two progress bars on the side to display the height level of a controller. These bars can be calibrate to adjust for certain range of motion.
+3. Scales to read files that are considered to be "SlideSets" in the File System. Then proceeds to Display them on the UI card.
+4. Has a built in "Color Test" that appears after all other test sets have been cycled through. Colored Boxes appear on screen and then randomize when clicked after a certain time.
+5. Allows the user to switch off the VR mode and switch to Passthrough mode.
+6. Operates using both the headset controller and Keyboard controls.
+
+(https://youtu.be/-pkYrWvKVpk)
 
 # Setting up the Meta Quest 3
 [Back to the Top](#table-of-contents)<br>
