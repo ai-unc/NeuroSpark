@@ -160,7 +160,7 @@ public class CardController : MonoBehaviour
         passthroughMode = false;
         slideVisible = true;
         
-        /*ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);*/
+        ShowSlide(currentSlideIndex, folderNames[currentFolderIndex], folderRoot);
 
         m_StartupMenu.GetComponent<CanvasGroup>().alpha = 1;
         m_StartupMenu.GetComponent<Canvas>().GetComponentInChildren<TextMeshProUGUI>().text = "Press right arrow to set Left Min Y.";
