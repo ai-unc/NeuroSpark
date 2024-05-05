@@ -8,11 +8,12 @@ This project will use a VR headset to streamline Neuromonitoring during intracra
 # Table of Contents
 1. [Project Overview](#project-overview)
 2. [Operating Instructions](#operating-instructions)
-3. [Setting up the Meta Quest 3](#setting-up-the-meta-quest-3)
-4. [Setting up Unity dev environment](#setting-up-unity)
-5. [Loading and modifying the test content](#loading-and-modifying-tests)
-6. [Required Software](#Required-Software)
-7. [Resources](#resources)
+3. [Setting up the AirTurn BT500](#setting-up-the-airturn-bt500)
+4. [Setting up the Meta Quest 3](#setting-up-the-meta-quest-3)
+5. [Setting up Unity dev environment](#setting-up-unity)
+6. [Loading and modifying the test content](#loading-and-modifying-tests)
+7. [Required Software](#required-software)
+8. [Resources](#resources)
 
 # Project Overview
 [Back to the Top](#table-of-contents)
@@ -40,11 +41,15 @@ These instructions are to shows users how to install the application on a VR Hea
 
 ### Connecting Necessary Devices:
 1. AirTurn BT500|S-4 - configuration and pairing instructions
-2. Text
-3. Text
+
+### Controls
+This project will work with the arrow keys of any Bluetooth keyboard.  We have chosen to develop with the 4 pedal version of the AirTurn BT500. The AirTurn Quad 500 device is configured to imitate a standard Bluetooth keyboard.  The pedals are numbered 1 - 4 starting with the left most pedal. Using the device in mode 2 maps the four pedals to four directional arrows as shown in the image below:
+![pedals](https://github.com/androwis/AwakeVR/assets/77592670/dcf0402a-4133-4cc8-8ebb-7d99e139e3df)
+note: If you prefer a different layout for the arrow keys, you have the ability to change the arrangement of the pedal mappings in the AirTurn Manager cellphone app.
 
 
 ### What the application does:
+[Back to the Top](#table-of-contents)<br>
 1. Has a UI card the follows the users head position
 2. Has a motor test with two progress bars on the side to display the height level of a controller. These bars can be calibrate to adjust for certain range of motion.
 3. Scales to read files that are considered to be "SlideSets" in the File System. Then proceeds to Display them on the UI card.
@@ -53,6 +58,18 @@ These instructions are to shows users how to install the application on a VR Hea
 6. Operates using both the headset controller and Keyboard controls.
 
 (https://youtu.be/-pkYrWvKVpk)
+
+### Setting up the AirTurn BT500
+[Back to the Top](#table-of-contents)<br>
+
+<img src="https://github.com/androwis/AwakeVR/assets/77592670/85b1d8c3-c525-48c6-8028-c60121b6becc" width="200"/>
+<img src="https://github.com/androwis/AwakeVR/assets/77592670/1775d282-a0ed-4a3f-91bc-8caf0e910151" width="200"/>
+<img src="https://github.com/androwis/AwakeVR/assets/77592670/cdb3682e-3430-4921-b57f-25406d1208e3" width="200"/>
+<img src="https://github.com/androwis/AwakeVR/assets/77592670/9b712db6-168b-4bbb-9120-e9e2039831c2" width="200"/>
+
+
+
+
 
 # Setting up the Meta Quest 3
 [Back to the Top](#table-of-contents)<br>
