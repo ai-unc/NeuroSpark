@@ -61,7 +61,7 @@ note: If you prefer a different layout for the arrow keys, you have the ability 
 
 ### Setting up the AirTurn BT500
 [Back to the Top](#table-of-contents)<br>
-
+Install the AirTurn Manager app on your [iPhone](https://apps.apple.com/gb/app/airturn-manager/id945406391) / [Android](https://www.airturn.com/blogs/support/airturn-manager-for-android) device.<br/>
 <img src="https://github.com/androwis/AwakeVR/assets/77592670/85b1d8c3-c525-48c6-8028-c60121b6becc" width="200"/>
 <img src="https://github.com/androwis/AwakeVR/assets/77592670/1775d282-a0ed-4a3f-91bc-8caf0e910151" width="200"/>
 <img src="https://github.com/androwis/AwakeVR/assets/77592670/cdb3682e-3430-4921-b57f-25406d1208e3" width="200"/>
