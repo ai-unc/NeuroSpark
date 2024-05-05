@@ -82,7 +82,9 @@ Note: To set up a Meta Quest 3t for development, see the Rift Native SDK documen
 1. Link Quest 3 with Meta Account
 2. Put quest 3 in development mode, this requires a Meta developer account.
 3. Install APK file, make sure that the app has access to the local file-system and the pre-defined boundaries.
-4. Copy test file directories to the /Documents folder in the Quest 3 file system.
+4. Copy test file directories to the /Documents folder in the Quest 3 file system. If you don't install the files and give your app access to the local filesystem, you will see the following slide:<br/>
+   <img src="https://github.com/androwis/AwakeVR/assets/77592670/819f2553-d07f-4e14-9eea-3b93c2ac4ab8" width="600"><br/>
+   If you see this,  follow the [Loading and modifying the test content](#loading-and-modifying-tests) instructions.
 5. Pre-define the boundaries in the empty Operating Room, you won't be able to do this when the room is full of people and equipment.
 6. Pair the Quest 3 with the Bluetooth footswitch device (this device emulates a bluetooth keyboard).
 7. Calibrate the floor level before you put the device on the patient. This will impact the perceived height of the controllers above the floor and affect the range of motion display. 
