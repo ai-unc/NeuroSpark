@@ -62,12 +62,12 @@ note: If you prefer a different layout for the arrow keys, you have the ability 
 ### Setting up the AirTurn BT500
 [Back to the Top](#table-of-contents)<br>
 Install the AirTurn Manager app on your [iPhone](https://apps.apple.com/gb/app/airturn-manager/id945406391) / [Android](https://www.airturn.com/blogs/support/airturn-manager-for-android) device.<br/>
-Launch the app.
-Turn on the foot switch
-Select the foot switch
-Select "Pedal Actions"
-Select Mode 2
-Select each switch and make sure the options match the figures below (Mechanism defaults to pulse, and needs to be changed to momentary).
+Launch the app.<br/>
+Turn on the foot switch<br/>
+Select the foot switch<br/>
+Select "Pedal Actions"<br/>
+Select Mode 2<br/>
+Select each switch and make sure the options match the figures below (Mechanism defaults to pulse, and needs to be changed to momentary).<br/>
 <img src="https://github.com/androwis/AwakeVR/assets/77592670/85b1d8c3-c525-48c6-8028-c60121b6becc" width="200"/>
 <img src="https://github.com/androwis/AwakeVR/assets/77592670/1775d282-a0ed-4a3f-91bc-8caf0e910151" width="200"/>
 <img src="https://github.com/androwis/AwakeVR/assets/77592670/cdb3682e-3430-4921-b57f-25406d1208e3" width="200"/>
