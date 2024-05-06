@@ -145,6 +145,8 @@ Install Meta Quest Developer Hub: https://developer.oculus.com/downloads/package
 [Back to the Top](#table-of-contents)<br>
 Below is a list of resources that were mentioned above or resources that could provide more guidance. Its strongly recommended that if the videos weren't helpful or if this readme wasn't enought that you go through these.
 
+[Unit Test](Test.md)<br/>
+
 Device Setup: https://developer.oculus.com/documentation/native/android/mobile-device-setup/
 
 Connect the Headset to MQDH: https://developer.oculus.com/documentation/unity/ts-odh/
