@@ -41,11 +41,13 @@
 
 # Integration Test
 
-
+## Verify The Application Runs On Quest 3
 1. Power up the headset 
 2. Pair the bluetooth footswitch
 3. Start the VR Neuromonitoring app
    Did the application start ? <br/>
+   &emsp; If Yes - Test Passes <br/>
+   &emsp; If No - Test Fails 
    
 ## Verify Reading Quest 3 Controller Position    
 4. Complete controller calibration procedure
@@ -58,9 +60,31 @@
    &emsp; If Yes - Test Passes <br/>
    &emsp; If No - Test Fails <br/>
 
-## Verify Slide Card Loads Image / Be Able To Read From The Quest 3 File System
+## Verify Application Able To Read From The Quest 3 File System
 7. Do you see a "default Slide" on the screen ? <br/>
    If Yes - This means that you Slides FAILED to load <br/>
    If No - Do you see Slide1.jpg of SlideSet1 ? <br/>
    &emsp; If Yes - Test Passes <br/>
-   &emsp; If No - Test Fails <br/>      
+   &emsp; If No - Test Fails <br/>
+
+## Verify Foot Pedal Functionality
+8. Press right arrow pedal
+   Does the test go to the next slide ? <br/>
+   &emsp; If Yes - Test Passes <br/>
+   &emsp; If No - Test Fails
+9. Press left arrow pedal
+   Does the test go to the previous slide ? <br/>
+   &emsp; If Yes - Test Passes <br/>
+   &emsp; If No - Test Fails
+10. Press down arrow pedal
+    Does the program change to the next test ? <br/>
+    &emsp; If Yes - Test Passes <br/>
+    &emsp; If No - Test Fails
+11. Press up arrow pedal
+    Does the Quest 3 change to pass-through mode ? <br/>
+    &emsp; If Yes - Test Passes <br/>
+    &emsp; If No - Test Fails
+12. Press up arrow pedal again
+    Does Quest 3 return to the application ? <br/>
+    &emsp; If Yes - Test Passes <br/>
+    &emsp; If No - Test Fails
