@@ -34,11 +34,33 @@
 ## Verify We Can Loop Through All Tests
 10. Continually press the down arrow until you see the first slide of the first test again <br/>
    Did you go to the first test after finishing the color test ? <br/>
-   &emsp; If No - Test Fails <br/>
-   &emsp; If Yes - Test Passes
+   &emsp; If Yes - Test Passes <br/>
+   &emsp; If No - Test Fails 
+   
    
 
 # Integration Test
+
+
 1. Power up the headset 
 2. Pair the bluetooth footswitch
 3. Start the VR Neuromonitoring app
+   Did the application start ? <br/>
+   
+## Verify Reading Quest 3 Controller Position    
+4. Complete controller calibration procedure
+5. Move Left Controller up and down <br/>
+   Does the upper yellow bargraph move with respect to the controller's position ? <br/>
+   &emsp; If Yes - Test Passes <br/>
+   &emsp; If No - Test Fails <br/>
+6. Move Right Controller up and down <br/>
+   Does the lower yellow bargraph move with respect to the controller's position ? <br/>
+   &emsp; If Yes - Test Passes <br/>
+   &emsp; If No - Test Fails <br/>
+
+## Verify Slide Card Loads Image / Be Able To Read From The Quest 3 File System
+7. Do you see a "default Slide" on the screen ? <br/>
+   If Yes - This means that you Slides FAILED to load <br/>
+   If No - Do you see Slide1.jpg of SlideSet1 ? <br/>
+   &emsp; If Yes - Test Passes <br/>
+   &emsp; If No - Test Fails <br/>      
