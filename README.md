@@ -1,6 +1,5 @@
 # AwakeVR
 
-*** This page is a work in Progress and will be done soon ***<br>
 Virtual Reality for Awake Cranis.
 
 This project will use a VR headset to streamline Neuromonitoring during intracranial surgical procedures.
