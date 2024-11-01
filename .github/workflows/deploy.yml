@@ -1,0 +1,41 @@
+name: Deploy GitHub Pages from Friendsgiving Folder
+
+on:
+  push:
+    branches:
+      - main  # default branch
+    paths:
+      - 'Friendsgiving/**'  # trigger only if files in Friendsgiving change
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # ensures the GITHUB_TOKEN is used
+          fetch-depth: 0  # fetch all history for all branches and tags.
+
+      # if you have build process, uncomment and modify the following steps
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '16'  # adjust to required Node.js version
+
+      # - name: Install Dependencies
+      #   run: npm install
+      #   working-directory: Friendsgiving
+
+      # - name: Build the Site
+      #   run: npm run build
+      #   working-directory: Friendsgiving
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Friendsgiving  # path to site files
+          publish_branch: gh-pages
+          user_name: GitHub Actions
+          user_email: actions@github.com
