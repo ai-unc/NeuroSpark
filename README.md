@@ -23,8 +23,8 @@ We're organizing a potluck-style meal! To coordinate who brings what, we've set 
 
 ## Schedule
 
-- 5:30 PM: Arrival and Welcome \\
-- 6:00 PM: Dinner Begins \\
+- 5:30 PM: Arrival and Welcome
+- 6:00 PM: Dinner Begins
 - 7:30 PM: Games and Activities
 - 8:30 PM: Closing
 
