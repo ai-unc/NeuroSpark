@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Friendsgiving Food Sign-Up</title>
+    <link rel="icon" href="./media/logo.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo-background"></div>
+        <img src="./media/logo.png" alt="AI Club Logo" class="logo">
+</div>
+    <div class="container">
+        <h1>Friendsgiving Food Sign-Up</h1>
+        <form action="https://script.google.com/macros/s/AKfycbwFV5EoHQ0GLZHih-UGvf0IzMPkBI_40V3lTgHD3-E0sTujWCIi1SeSGT89Qk5amxSl/exec" method="POST">
+            <input type="text" id="nameInput" name="participantName" placeholder="Enter your name..." oninput="filterNames()">
+            <input type="text" id="foodInput" name="foodItem" placeholder="Start typing a dish..." oninput="filterFoods()">
+            <button type="submit">Add</button>
+            <div id="nameSuggestions" class="suggestions"></div>
+            <div id="foodSuggestions" class="suggestions"></div>
+        </form>
+    </div>
+</body>
+</html>
