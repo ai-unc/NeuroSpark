@@ -4,11 +4,11 @@ Welcome to the Neurospark Friendsgiving Event! We're excited to celebrate this f
 
 ## Event Details
 
-**Date:** November 16th
+**Date:** November 17th
 
 **Time:** 5:30 to 7:30 PM
 
-**Location:** Frank Porter Graham Student Union 2518 AB
+**Location:** Frank Porter Graham Student Union 3209
 
 **Host:** Neurospark
 
