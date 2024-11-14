@@ -8,7 +8,7 @@ Welcome to the Neurospark Friendsgiving Event! We're excited to celebrate this f
 
 **Time:** 5:30 to 7:30 PM
 
-**Location:** Frank Porter Graham Student Union 3209
+**Location:** Frank Porter Graham Student Union 2422
 
 **Host:** Neurospark
 
