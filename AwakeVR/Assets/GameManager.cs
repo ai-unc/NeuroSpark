@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,18 +14,21 @@ public class GameManager : MonoBehaviour
     private enum SelectionMode { ShapeSelection, BinSelection };
     private SelectionMode currentMode = SelectionMode.ShapeSelection;
 
+    private Keyboard keyboard;
+
     // Start is called before the first frame update
     void Start()
     {
         UpdateShapeHighlight();
         UpdateBinHighlight();
+        keyboard = Keyboard.current;
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {           
         // Handle left / right arrow inputs
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (keyboard.leftArrowKey.wasPressedThisFrame)
         {
             if (currentMode == SelectionMode.ShapeSelection)
             {
@@ -37,7 +41,7 @@ public class GameManager : MonoBehaviour
                 UpdateBinHighlight();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (keyboard.rightArrowKey.wasPressedThisFrame)
         {
             if (currentMode == SelectionMode.ShapeSelection)
             {
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Handle space bar for selection
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (keyboard.spaceKey.wasPressedThisFrame)
         {
             if (currentMode == SelectionMode.ShapeSelection)
             {
@@ -61,7 +65,7 @@ public class GameManager : MonoBehaviour
             }
             else if (currentMode == SelectionMode.BinSelection)
             {
-                PlaceShapeInBin();
+                PlaceShapeInBin(); 
                 currentMode = SelectionMode.ShapeSelection;
 
                 // Reset bin selection index
