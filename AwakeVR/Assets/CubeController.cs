@@ -33,4 +33,12 @@ public class CubeController : MonoBehaviour
         isSelected = !isSelected;
         rend.material.color = isSelected ? Color.red : originalColor;
     }
+
+    public void LightUpPattern(Color color)
+    {
+        if (!isSelected)
+        {
+            rend.material.color = color;
+        }
+    }
 }

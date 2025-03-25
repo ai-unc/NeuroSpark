@@ -7,13 +7,15 @@ public class GridController : MonoBehaviour
 {
     public GameObject cubePrefab;
     public float spacing = 1.2f;
-    private GameObject[,] grid = new GameObject[3,3];
+    public GameObject[,] grid = new GameObject[3,3];
     private Vector2Int currentPosition = new Vector2Int(0,0);
     private Color originalColor;
     private Keyboard keyboard;
+    private RandomPatternGenerator randomPatternGenerator;
 
     void Start()
     {
+        randomPatternGenerator = GetComponent<RandomPatternGenerator>();
         originalColor = cubePrefab.GetComponent<Renderer>().sharedMaterial.color;
         CreateGrid();
         UpdateHighlight();
@@ -42,6 +44,10 @@ public class GridController : MonoBehaviour
     void HandleInput()
     {
         Vector2Int newPosition = currentPosition;
+        if (keyboard.nKey.wasPressedThisFrame)        {
+            // call GenerateNewPattern from RandomPatternGenerator.cs
+            randomPatternGenerator.GenerateNewPattern();
+        }
 
         if (keyboard.leftArrowKey.wasPressedThisFrame) newPosition.x--;
         if (keyboard.rightArrowKey.wasPressedThisFrame) newPosition.x++;
@@ -56,9 +62,13 @@ public class GridController : MonoBehaviour
             currentPosition = newPosition;
             UpdateHighlight();
         }
-
+        bool pressed = false;
         if (keyboard.spaceKey.wasPressedThisFrame)
         {
+            if (!pressed) {
+                pressed = true;
+                GetComponent<PatternSystem>().StartPattern();
+            }
             ToggleSelection();
         }
     }
@@ -83,5 +93,14 @@ public class GridController : MonoBehaviour
     CubeController GetCurrentCubeController()
     {
         return grid[currentPosition.x, currentPosition.y].GetComponent<CubeController>();
+    }
+
+    public void ResetAllColors()
+    {
+        foreach (GameObject cube in grid)
+        {
+            CubeController controller = cube.GetComponent<CubeController>();
+            controller.ResetColor();
+        }
     }
 }
