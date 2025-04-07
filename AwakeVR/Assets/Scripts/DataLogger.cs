@@ -21,6 +21,10 @@ public class DataLogger : MonoBehaviour
         jsonFilePath = Path.Combine(Application.persistentDataPath, $"StroopData_{timeStamp}.json");
 
 
+        Debug.Log("CSV File Path: " + Application.persistentDataPath);
+
+
+
         // If CSV doesn't exist, write a header row
         if (!File.Exists(csvFilePath))
         {
@@ -36,6 +40,8 @@ public class DataLogger : MonoBehaviour
     public void LogTrial(StroopData data)
     {
         // 1) Append to CSV
+
+
         string csvLine = string.Format(
             "{0},{1},{2},{3},{4},{5},{6}\n",
             data.trialIndex,
