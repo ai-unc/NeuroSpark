@@ -14,12 +14,12 @@ public class GameManager : MonoBehaviour
     public GameObject[] bins;
 
     [Header("Vertical Offsets")]
-    public float topYOffset = 3.5f;
+    public float topYOffset = 3.0f;
     public float placedYOffset = 1.0f;
 
-    private List<GameObject> correctOrder;    
-    private List<GameObject> shuffledOrder;     
-    private List<GameObject> unplacedShapes;    
+    private List<GameObject> correctOrder;
+    private List<GameObject> shuffledOrder;
+    private List<GameObject> unplacedShapes;
 
     private Dictionary<GameObject, int> shapeToBinIndex = new Dictionary<GameObject, int>();
     private Dictionary<GameObject, Vector3> initialPositions = new Dictionary<GameObject, Vector3>();
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private SelectionMode currentMode = SelectionMode.Memorization;
 
     private bool useVRInput = false;
+    private bool vrAxisReset = true;
 
     void Awake()
     {
@@ -93,7 +94,46 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!useVRInput)
+        if (useVRInput)
+        {
+            if (Gamepad.current != null)
+            {
+                Vector2 stickValue = Gamepad.current.leftStick.ReadValue();
+                if (currentMode == SelectionMode.SelectionShape && unplacedShapes.Count > 0)
+                {
+                    if (vrAxisReset && Mathf.Abs(stickValue.x) > 0.5f)
+                    {
+                        vrAxisReset = false;
+                        if (stickValue.x > 0)
+                            currentShapeIndex = (currentShapeIndex + 1) % unplacedShapes.Count;
+                        else if (stickValue.x < 0)
+                            currentShapeIndex = (currentShapeIndex - 1 + unplacedShapes.Count) % unplacedShapes.Count;
+                        UpdateShapeHighlight(currentShapeIndex);
+                    }
+                    else if (Mathf.Abs(stickValue.x) < 0.1f)
+                    {
+                        vrAxisReset = true;
+                    }
+                }
+                else if (currentMode == SelectionMode.SelectionBin)
+                {
+                    if (vrAxisReset && Mathf.Abs(stickValue.x) > 0.5f)
+                    {
+                        vrAxisReset = false;
+                        if (stickValue.x > 0)
+                            currentBinIndex = (currentBinIndex + 1) % bins.Length;
+                        else if (stickValue.x < 0)
+                            currentBinIndex = (currentBinIndex - 1 + bins.Length) % bins.Length;
+                        UpdateBinHighlight(currentBinIndex);
+                    }
+                    else if (Mathf.Abs(stickValue.x) < 0.1f)
+                    {
+                        vrAxisReset = true;
+                    }
+                }
+            }
+        }
+        else
         {
             if (currentMode == SelectionMode.SelectionShape)
             {
@@ -151,10 +191,48 @@ public class GameManager : MonoBehaviour
         PlaceShape(currentSelectedShape, bin);
     }
 
+    // Called by VR helper when a shape is hovered.
+    public void OnShapeHovered(GameObject shape)
+    {
+        if (currentMode != SelectionMode.SelectionShape)
+            return;
+        if (!unplacedShapes.Contains(shape))
+            return;
+        currentSelectedShape = shape;
+        // Update the highlight on all shapes so that the hovered shape turns green.
+        for (int i = 0; i < unplacedShapes.Count; i++)
+        {
+            if(unplacedShapes[i] == shape)
+                SetShapeColor(unplacedShapes[i], Color.green);
+            else
+                SetShapeColor(unplacedShapes[i], Color.white);
+        }
+        // Optionally, update the selection index.
+        currentShapeIndex = unplacedShapes.IndexOf(shape);
+    }
+
+    // Called by VR helper when a bin is hovered.
+    public void OnBinHovered(GameObject bin)
+    {
+        if (currentMode != SelectionMode.SelectionBin)
+            return;
+        // Update the bin highlight so that the hovered bin turns yellow.
+        for (int i = 0; i < bins.Length; i++)
+        {
+            Renderer rend = bins[i].GetComponent<Renderer>();
+            if (rend != null)
+                rend.material.color = (bins[i] == bin) ? Color.yellow : Color.gray;
+        }
+        // Optionally, update the bin selection index.
+        currentBinIndex = System.Array.IndexOf(bins, bin);
+    }
+
+
     private void PlaceShape(GameObject shape, GameObject bin)
     {
         int selectedBinIndex = System.Array.IndexOf(bins, bin);
-        if (selectedBinIndex == -1) return;
+        if (selectedBinIndex == -1)
+            return;
         int intendedBinIndex = shapeToBinIndex[shape];
         Vector3 binPos = bin.transform.position;
 
@@ -213,7 +291,8 @@ public class GameManager : MonoBehaviour
     private void SetShapeColor(GameObject shape, Color color)
     {
         Renderer rend = shape.GetComponent<Renderer>();
-        if (rend != null) rend.material.color = color;
+        if (rend != null)
+            rend.material.color = color;
     }
 
     private void Shuffle(List<GameObject> list)
@@ -239,7 +318,6 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < correctOrder.Count; i++)
             {
-                // Each shape gets a unique phase offset for a rainbow pattern.
                 float hue = (Time.time + i / (float)correctOrder.Count) % 1f;
                 Color rainbowColor = Color.HSVToRGB(hue, 1f, 1f);
                 SetShapeColor(correctOrder[i], rainbowColor);
