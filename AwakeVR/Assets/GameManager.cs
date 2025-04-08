@@ -2,131 +2,249 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
+    [Header("Shape and Bin Objects")]
     public GameObject[] shapes;
     public GameObject[] bins;
 
+    [Header("Vertical Offsets")]
+    public float topYOffset = 3.5f;
+    public float placedYOffset = 1.0f;
+
+    private List<GameObject> correctOrder;    
+    private List<GameObject> shuffledOrder;     
+    private List<GameObject> unplacedShapes;    
+
+    private Dictionary<GameObject, int> shapeToBinIndex = new Dictionary<GameObject, int>();
+    private Dictionary<GameObject, Vector3> initialPositions = new Dictionary<GameObject, Vector3>();
+
+    private Keyboard keyboard;
     private int currentShapeIndex = 0;
     private int currentBinIndex = 0;
 
-    private enum SelectionMode { ShapeSelection, BinSelection };
-    private SelectionMode currentMode = SelectionMode.ShapeSelection;
+    private GameObject currentSelectedShape = null;
 
-    private Keyboard keyboard;
+    private enum SelectionMode { Memorization, SelectionShape, SelectionBin, Completed }
+    private SelectionMode currentMode = SelectionMode.Memorization;
 
-    // Start is called before the first frame update
+    private bool useVRInput = false;
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     void Start()
     {
-        UpdateShapeHighlight();
-        UpdateBinHighlight();
+        useVRInput = XRSettings.isDeviceActive;
         keyboard = Keyboard.current;
+
+        correctOrder = new List<GameObject>(shapes);
+        correctOrder = correctOrder.OrderBy(s => Random.value).ToList();
+
+        for (int i = 0; i < correctOrder.Count; i++)
+            shapeToBinIndex[correctOrder[i]] = i;
+
+        for (int i = 0; i < correctOrder.Count && i < bins.Length; i++)
+        {
+            Vector3 binPos = bins[i].transform.position;
+            Vector3 shapePos = new Vector3(binPos.x, binPos.y + topYOffset, binPos.z);
+            correctOrder[i].transform.position = shapePos;
+            SetShapeColor(correctOrder[i], Color.green);
+        }
+        StartCoroutine(WaitAndShuffle(5f));
     }
 
-    // Update is called once per frame
+    private IEnumerator WaitAndShuffle(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        shuffledOrder = new List<GameObject>(correctOrder);
+        Shuffle(shuffledOrder);
+
+        for (int i = 0; i < shuffledOrder.Count && i < bins.Length; i++)
+        {
+            Vector3 binPos = bins[i].transform.position;
+            Vector3 shapePos = new Vector3(binPos.x, binPos.y + topYOffset, binPos.z);
+            shuffledOrder[i].transform.position = shapePos;
+            SetShapeColor(shuffledOrder[i], Color.white);
+            initialPositions[shuffledOrder[i]] = shapePos;
+        }
+
+        unplacedShapes = new List<GameObject>(shuffledOrder);
+        currentMode = SelectionMode.SelectionShape;
+        currentShapeIndex = 0;
+        currentBinIndex = 0;
+        if (!useVRInput)
+        {
+            UpdateShapeHighlight(currentShapeIndex);
+            UpdateBinHighlight(currentBinIndex);
+        }
+    }
+
     void Update()
-    {           
-        // Handle left / right arrow inputs
-        if (keyboard.leftArrowKey.wasPressedThisFrame)
-        {
-            if (currentMode == SelectionMode.ShapeSelection)
-            {
-                currentShapeIndex = (currentShapeIndex - 1 + shapes.Length) % shapes.Length;
-                UpdateShapeHighlight();
-            }
-            else if (currentMode == SelectionMode.BinSelection)
-            {
-                currentBinIndex = (currentBinIndex - 1 + bins.Length) % bins.Length;
-                UpdateBinHighlight();
-            }
-        }
-        else if (keyboard.rightArrowKey.wasPressedThisFrame)
-        {
-            if (currentMode == SelectionMode.ShapeSelection)
-            {
-                currentShapeIndex = (currentShapeIndex + 1) % shapes.Length;
-                UpdateShapeHighlight();
-            }
-            else if (currentMode == SelectionMode.BinSelection)
-            {
-                currentBinIndex = (currentBinIndex + 1) % bins.Length;
-                UpdateBinHighlight();
-            }
-        }
-
-        // Handle space bar for selection
-        if (keyboard.spaceKey.wasPressedThisFrame)
-        {
-            if (currentMode == SelectionMode.ShapeSelection)
-            {
-                Debug.Log("Shape Selected: " + shapes[currentShapeIndex].name);
-                currentMode = SelectionMode.BinSelection;
-            }
-            else if (currentMode == SelectionMode.BinSelection)
-            {
-                PlaceShapeInBin(); 
-                currentMode = SelectionMode.ShapeSelection;
-
-                // Reset bin selection index
-                currentBinIndex = 0;
-                UpdateBinHighlight();
-            }
-        }
-    }
-
-    void UpdateShapeHighlight()
     {
-        // Loop through all shpaes and update their appearance
-        for (int i = 0; i < shapes.Length; i++)
+        if (!useVRInput)
         {
-            Renderer rend = shapes[i].GetComponent<Renderer>();
-            if (rend != null)
+            if (currentMode == SelectionMode.SelectionShape)
             {
-                if (i == currentShapeIndex)
+                if (keyboard.leftArrowKey.wasPressedThisFrame)
                 {
-                    rend.material.color = Color.green; // Highlight the selected shape
+                    currentShapeIndex = (currentShapeIndex - 1 + unplacedShapes.Count) % unplacedShapes.Count;
+                    UpdateShapeHighlight(currentShapeIndex);
                 }
-                else
+                else if (keyboard.rightArrowKey.wasPressedThisFrame)
                 {
-                    rend.material.color = Color.white; // Default color.
+                    currentShapeIndex = (currentShapeIndex + 1) % unplacedShapes.Count;
+                    UpdateShapeHighlight(currentShapeIndex);
+                }
+                else if (keyboard.spaceKey.wasPressedThisFrame)
+                {
+                    currentSelectedShape = unplacedShapes[currentShapeIndex];
+                    SetShapeColor(currentSelectedShape, Color.green);
+                    currentMode = SelectionMode.SelectionBin;
+                    currentBinIndex = 0;
+                    UpdateBinHighlight(currentBinIndex);
+                }
+            }
+            else if (currentMode == SelectionMode.SelectionBin)
+            {
+                if (keyboard.leftArrowKey.wasPressedThisFrame)
+                {
+                    currentBinIndex = (currentBinIndex - 1 + bins.Length) % bins.Length;
+                    UpdateBinHighlight(currentBinIndex);
+                }
+                else if (keyboard.rightArrowKey.wasPressedThisFrame)
+                {
+                    currentBinIndex = (currentBinIndex + 1) % bins.Length;
+                    UpdateBinHighlight(currentBinIndex);
+                }
+                else if (keyboard.spaceKey.wasPressedThisFrame)
+                {
+                    PlaceShape(currentSelectedShape, bins[currentBinIndex]);
                 }
             }
         }
     }
 
-    void UpdateBinHighlight()
+    public void OnShapeSelected(GameObject shape)
     {
-        // Loop through all bins and update their appearance
+        if (currentMode != SelectionMode.SelectionShape) return;
+        if (!unplacedShapes.Contains(shape)) return;
+        currentSelectedShape = shape;
+        SetShapeColor(currentSelectedShape, Color.green);
+        currentMode = SelectionMode.SelectionBin;
+    }
+
+    public void OnBinSelected(GameObject bin)
+    {
+        if (currentMode != SelectionMode.SelectionBin || currentSelectedShape == null) return;
+        PlaceShape(currentSelectedShape, bin);
+    }
+
+    private void PlaceShape(GameObject shape, GameObject bin)
+    {
+        int selectedBinIndex = System.Array.IndexOf(bins, bin);
+        if (selectedBinIndex == -1) return;
+        int intendedBinIndex = shapeToBinIndex[shape];
+        Vector3 binPos = bin.transform.position;
+
+        if (selectedBinIndex == intendedBinIndex)
+        {
+            Vector3 targetPos = new Vector3(binPos.x, binPos.y + placedYOffset, binPos.z);
+            shape.transform.position = targetPos;
+            SetShapeColor(shape, Color.green);
+            unplacedShapes.Remove(shape);
+            currentSelectedShape = null;
+            if (unplacedShapes.Count == 0)
+            {
+                FinalCelebration();
+                currentMode = SelectionMode.Completed;
+            }
+            else
+            {
+                currentMode = SelectionMode.SelectionShape;
+                currentShapeIndex = 0;
+                UpdateShapeHighlight(currentShapeIndex);
+            }
+        }
+        else
+        {
+            SetShapeColor(shape, Color.red);
+            StartCoroutine(ResetShape(shape));
+            currentSelectedShape = null;
+            currentMode = SelectionMode.SelectionShape;
+        }
+    }
+
+    private IEnumerator ResetShape(GameObject shape)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (initialPositions.ContainsKey(shape))
+            shape.transform.position = initialPositions[shape];
+        SetShapeColor(shape, Color.white);
+    }
+
+    private void UpdateShapeHighlight(int selectedIndex)
+    {
+        for (int i = 0; i < unplacedShapes.Count; i++)
+            SetShapeColor(unplacedShapes[i], i == selectedIndex ? Color.green : Color.white);
+    }
+
+    private void UpdateBinHighlight(int selectedIndex)
+    {
         for (int i = 0; i < bins.Length; i++)
         {
             Renderer rend = bins[i].GetComponent<Renderer>();
             if (rend != null)
-            {
-                if (i == currentBinIndex)
-                {
-                    rend.material.color = Color.yellow; // Highlight the selected bin
-                }
-                else
-                {
-                    rend.material.color = Color.gray; // Default color.
-                }
-            }
+                rend.material.color = (i == selectedIndex) ? Color.yellow : Color.gray;
         }
     }
 
-    void PlaceShapeInBin()
+    private void SetShapeColor(GameObject shape, Color color)
     {
-        // Get the selected shape and bin
-        GameObject selectedShape = shapes[currentShapeIndex];
-        GameObject selectedBin = bins[currentBinIndex];
-
-        // Move the shape to the bin's position
-        selectedShape.transform.position = selectedBin.transform.position;
-        
-        // Add in order logic here
-        Debug.Log(selectedShape.name + " placed in " + selectedBin.name);
+        Renderer rend = shape.GetComponent<Renderer>();
+        if (rend != null) rend.material.color = color;
     }
 
-    
+    private void Shuffle(List<GameObject> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int randIndex = Random.Range(0, i + 1);
+            GameObject temp = list[i];
+            list[i] = list[randIndex];
+            list[randIndex] = temp;
+        }
+    }
+
+    private void FinalCelebration()
+    {
+        Debug.Log("All shapes placed correctly!");
+        StartCoroutine(RainbowCelebration());
+    }
+
+    private IEnumerator RainbowCelebration()
+    {
+        while (true)
+        {
+            for (int i = 0; i < correctOrder.Count; i++)
+            {
+                // Each shape gets a unique phase offset for a rainbow pattern.
+                float hue = (Time.time + i / (float)correctOrder.Count) % 1f;
+                Color rainbowColor = Color.HSVToRGB(hue, 1f, 1f);
+                SetShapeColor(correctOrder[i], rainbowColor);
+            }
+            yield return null;
+        }
+    }
 }
