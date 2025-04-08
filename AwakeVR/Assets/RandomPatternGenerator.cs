@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
@@ -10,11 +11,26 @@ public class RandomPatternGenerator : MonoBehaviour
     public int patternLength = 5;
     public bool autoGenerateOnStart = true;
 
-    private PatternSystem patternSystem;
+    public PatternSystem patternSystem;
     private GridController gridController;
 
     void Start()
     {   
+        StartCoroutine(DelayedStart());
+
+    }
+
+    IEnumerator DelayedStart()
+    {
+        while (gridController == null || gridController.Grid == null)
+        {
+            yield return null;
+        }
+        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.patternGenerator = this;
+        }
         keyboard = Keyboard.current;
         patternSystem = GetComponent<PatternSystem>();
         gridController = GetComponent<GridController>();

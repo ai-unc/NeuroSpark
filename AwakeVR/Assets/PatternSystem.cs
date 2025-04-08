@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PatternSystem : MonoBehaviour
 {
+    public bool IsPlaying { get; private set;}
+
     [System.Serializable]
     public class Pattern
     {
@@ -18,7 +20,7 @@ public class PatternSystem : MonoBehaviour
     public Pattern pattern;
     public bool autoStart = true;
 
-    private GridController gridController;
+    public GridController gridController;
     private Coroutine activePattern;
 
     void Start()
@@ -35,6 +37,7 @@ public class PatternSystem : MonoBehaviour
 
     IEnumerator PlayPattern()
     {
+        IsPlaying = true;
         List<Vector2Int> validatedPath = new List<Vector2Int>();
         
         // Validate adjacency
@@ -63,6 +66,7 @@ public class PatternSystem : MonoBehaviour
 
         yield return new WaitForSeconds(pattern.finalPause);
         gridController.ResetAllColors();
+        IsPlaying = false;
     }
 
     bool IsAdjacent(Vector2Int a, Vector2Int b)
@@ -79,6 +83,18 @@ public class PatternSystem : MonoBehaviour
 
     CubeController GetCube(Vector2Int pos)
     {
-        return gridController.grid[pos.x, pos.y].GetComponent<CubeController>();
+        if (gridController == null || gridController.Grid == null)
+        {
+            Debug.LogError("GridController reference missing");
+            return null;
+        }
+
+        if (pos.x < 0 || pos.x >= 3 || pos.y < 0 || pos.y >= 3)
+        {
+            Debug.LogError($"Invalid grid position: {pos}");
+            return null;
+        }
+
+        return gridController.Grid[pos.x, pos.y]?.GetComponent<CubeController>();
     }
 }

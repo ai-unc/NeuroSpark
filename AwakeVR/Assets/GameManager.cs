@@ -1,132 +1,78 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] shapes;
-    public GameObject[] bins;
+    public static GameManager Instance { get; private set; }
+    public enum GameState { PatternDisplay, Selection }
+    public GameState CurrentState { get; private set; }
 
-    private int currentShapeIndex = 0;
-    private int currentBinIndex = 0;
+    [Header("References")]
+    public GridController gridController;
+    public PatternSystem patternSystem;
+    public RandomPatternGenerator patternGenerator;
 
-    private enum SelectionMode { ShapeSelection, BinSelection };
-    private SelectionMode currentMode = SelectionMode.ShapeSelection;
-
-    private Keyboard keyboard;
-
-    // Start is called before the first frame update
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
-        UpdateShapeHighlight();
-        UpdateBinHighlight();
-        keyboard = Keyboard.current;
+        StartNewRound();
     }
 
-    // Update is called once per frame
-    void Update()
-    {           
-        // Handle left / right arrow inputs
-        if (keyboard.leftArrowKey.wasPressedThisFrame)
-        {
-            if (currentMode == SelectionMode.ShapeSelection)
-            {
-                currentShapeIndex = (currentShapeIndex - 1 + shapes.Length) % shapes.Length;
-                UpdateShapeHighlight();
-            }
-            else if (currentMode == SelectionMode.BinSelection)
-            {
-                currentBinIndex = (currentBinIndex - 1 + bins.Length) % bins.Length;
-                UpdateBinHighlight();
-            }
-        }
-        else if (keyboard.rightArrowKey.wasPressedThisFrame)
-        {
-            if (currentMode == SelectionMode.ShapeSelection)
-            {
-                currentShapeIndex = (currentShapeIndex + 1) % shapes.Length;
-                UpdateShapeHighlight();
-            }
-            else if (currentMode == SelectionMode.BinSelection)
-            {
-                currentBinIndex = (currentBinIndex + 1) % bins.Length;
-                UpdateBinHighlight();
-            }
-        }
-
-        // Handle space bar for selection
-        if (keyboard.spaceKey.wasPressedThisFrame)
-        {
-            if (currentMode == SelectionMode.ShapeSelection)
-            {
-                Debug.Log("Shape Selected: " + shapes[currentShapeIndex].name);
-                currentMode = SelectionMode.BinSelection;
-            }
-            else if (currentMode == SelectionMode.BinSelection)
-            {
-                PlaceShapeInBin(); 
-                currentMode = SelectionMode.ShapeSelection;
-
-                // Reset bin selection index
-                currentBinIndex = 0;
-                UpdateBinHighlight();
-            }
-        }
-    }
-
-    void UpdateShapeHighlight()
+    public void StartNewRound()
     {
-        // Loop through all shpaes and update their appearance
-        for (int i = 0; i < shapes.Length; i++)
-        {
-            Renderer rend = shapes[i].GetComponent<Renderer>();
-            if (rend != null)
-            {
-                if (i == currentShapeIndex)
-                {
-                    rend.material.color = Color.green; // Highlight the selected shape
-                }
-                else
-                {
-                    rend.material.color = Color.white; // Default color.
-                }
-            }
-        }
+        StartCoroutine(NewRoundRoutine());
     }
 
-    void UpdateBinHighlight()
+    IEnumerator NewRoundRoutine()
     {
-        // Loop through all bins and update their appearance
-        for (int i = 0; i < bins.Length; i++)
-        {
-            Renderer rend = bins[i].GetComponent<Renderer>();
-            if (rend != null)
-            {
-                if (i == currentBinIndex)
-                {
-                    rend.material.color = Color.yellow; // Highlight the selected bin
-                }
-                else
-                {
-                    rend.material.color = Color.gray; // Default color.
-                }
-            }
-        }
-    }
-
-    void PlaceShapeInBin()
-    {
-        // Get the selected shape and bin
-        GameObject selectedShape = shapes[currentShapeIndex];
-        GameObject selectedBin = bins[currentBinIndex];
-
-        // Move the shape to the bin's position
-        selectedShape.transform.position = selectedBin.transform.position;
+        // Pattern Display Phase
+        CurrentState = GameState.PatternDisplay;
+        gridController.SetInputEnabled(false);
+        patternGenerator.GenerateNewPattern();
         
-        // Add in order logic here
-        Debug.Log(selectedShape.name + " placed in " + selectedBin.name);
+        // Wait for pattern to complete
+        yield return new WaitWhile(() => patternSystem.IsPlaying);
+        
+        // Selection Phase
+        CurrentState = GameState.Selection;
+        gridController.SetInputEnabled(true);
+        gridController.ResetToDefaultPosition();
     }
 
-    
+    public void ResetSelections()
+    {
+        foreach (GameObject cube in gridController.Grid)
+        {
+            cube.GetComponent<CubeController>().ToggleSelection();
+        }
+    }
+
+    public void RepeatPattern()
+    {
+        StartCoroutine(RepeatPatternRoutine());
+    }
+
+    IEnumerator RepeatPatternRoutine()
+    {
+        CurrentState = GameState.PatternDisplay;
+        gridController.SetInputEnabled(false);
+        patternSystem.StartPattern();
+        
+        yield return new WaitWhile(() => patternSystem.IsPlaying);
+        
+        CurrentState = GameState.Selection;
+        gridController.SetInputEnabled(true);
+        gridController.ResetToDefaultPosition();
+    }
+
 }
