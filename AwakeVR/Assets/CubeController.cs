@@ -4,8 +4,8 @@ public class CubeController : MonoBehaviour
 {
     private Renderer rend;
     private Color originalColor;
-    private bool isSelected = false;
-
+    public bool isSelected = false;
+    public Vector2Int gridPosition;
     void Awake()
     {
         rend = GetComponent<Renderer>();
@@ -23,25 +23,26 @@ public class CubeController : MonoBehaviour
 
     public void ResetColor()
     {
-        if (!isSelected)
+        if (GameManager.Instance != null && 
+            GameManager.Instance.CurrentState == GameManager.GameState.Selection)
         {
-            rend.material.color = originalColor;
-        } else {
-            rend.material.color = Color.red;
+            rend.material.color = isSelected ? Color.red : originalColor;
         }
+    }
+
+    public void ResetToOriginal()
+    {
+        rend.material.color = originalColor;
     }
 
     public void ToggleSelection()
     {
         isSelected = !isSelected;
-        rend.material.color = isSelected ? Color.red : Color.yellow;
+        rend.material.color = isSelected ? Color.red : originalColor;
     }
 
     public void LightUpPattern(Color color)
     {
-        if (!isSelected)
-        {
-            rend.material.color = color;
-        }
+        rend.material.color = color;
     }
 }

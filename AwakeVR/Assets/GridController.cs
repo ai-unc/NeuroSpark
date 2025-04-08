@@ -18,6 +18,8 @@ public class GridController : MonoBehaviour
     private Color originalColor;
     private Keyboard keyboard;
     private RandomPatternGenerator randomPatternGenerator;
+    // Make selectedCubes a list of x and y values representing the cube squares.
+    public List<Vector2Int> selectedCubes = new List<Vector2Int>();
 
     void Awake()
     {
@@ -58,6 +60,7 @@ public class GridController : MonoBehaviour
                 cube.transform.localPosition = position;
                 cube.name = $"Cube_{x}_{y}";
                 Grid[x, y] = cube;
+                Grid[x, y].GetComponent<CubeController>().gridPosition = new Vector2Int(x, y);
             }
         }
     }
@@ -75,6 +78,9 @@ public class GridController : MonoBehaviour
         Vector2Int newPosition = currentPosition;
         if (keyboard.nKey.wasPressedThisFrame)        {
             // call GenerateNewPattern from RandomPatternGenerator.cs
+            GameManager.Instance.ResetSelections();
+            selectedCubes.Clear();
+            ResetAllColors();
             randomPatternGenerator.GenerateNewPattern();
         }
         if (keyboard.rKey.wasPressedThisFrame)        {
@@ -116,7 +122,35 @@ public class GridController : MonoBehaviour
     void ToggleSelection()
     {
         CubeController controller = GetCurrentCubeController();
+        if (controller.isSelected)
+        {
+            selectedCubes.Remove(controller.gridPosition);
+        }
+        else
+        {
+            selectedCubes.Add(controller.gridPosition);
+        }
         controller.ToggleSelection();
+
+        if (selectedCubes.Count == randomPatternGenerator.patternLength)
+        {
+            if (CheckUserPattern())
+            {
+                Debug.Log("Pattern matched!");
+                GameManager.Instance.ResetSelections();
+                selectedCubes.Clear();
+                ResetAllColors();
+                GameManager.Instance.StartNewRound();
+            }
+            else
+            {
+                Debug.Log("Pattern mismatch.");
+                GameManager.Instance.ResetSelections();
+                selectedCubes.Clear();
+                ResetAllColors();
+                GameManager.Instance.RepeatPattern();
+            }
+        }
     }
 
     CubeController GetCurrentCubeController()
@@ -129,7 +163,7 @@ public class GridController : MonoBehaviour
         foreach (GameObject cube in Grid)
         {
             CubeController controller = cube.GetComponent<CubeController>();
-            controller.ResetColor();
+            controller.ResetToOriginal();
         }
     }
 
@@ -143,4 +177,31 @@ public class GridController : MonoBehaviour
         currentPosition = new Vector2Int(1, 1);
         UpdateHighlight();
     }
+
+    public bool CheckUserPattern()
+    {
+        if (randomPatternGenerator.patternSequence == null)
+        {
+            Debug.LogError("Pattern sequence is null.");
+            return false;
+        }
+        if (selectedCubes.Count != randomPatternGenerator.patternLength)
+        {
+            Debug.LogError("Pattern length mismatch.");
+            return false;
+        }
+
+
+        for (int i = 0; i < selectedCubes.Count; i++)
+        {
+            if (selectedCubes[i] != randomPatternGenerator.patternSequence[i])
+            {
+                Debug.Log($"User input at index {i} does not match pattern.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

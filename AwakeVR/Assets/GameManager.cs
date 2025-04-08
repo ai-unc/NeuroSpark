@@ -53,7 +53,10 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject cube in gridController.Grid)
         {
-            cube.GetComponent<CubeController>().ToggleSelection();
+            if (cube.GetComponent<CubeController>().isSelected)
+            {
+                cube.GetComponent<CubeController>().ToggleSelection();
+            }
         }
     }
 

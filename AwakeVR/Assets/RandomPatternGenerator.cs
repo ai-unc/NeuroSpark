@@ -10,6 +10,7 @@ public class RandomPatternGenerator : MonoBehaviour
     [Header("Settings")]
     public int patternLength = 5;
     public bool autoGenerateOnStart = true;
+    public List<Vector2Int> patternSequence;
 
     public PatternSystem patternSystem;
     private GridController gridController;
@@ -63,6 +64,8 @@ public class RandomPatternGenerator : MonoBehaviour
             currentPos = validNextPositions[Random.Range(0, validNextPositions.Count)];
             pattern.Add(currentPos);
         }
+
+        patternSequence = pattern;
 
         return pattern;
     }
