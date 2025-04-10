@@ -1,3 +1,7 @@
+
+
+
+
 // using UnityEngine;
 // using System.Collections;
 
@@ -6,7 +10,7 @@
 //     [Header("References")]
 //     [SerializeField] private GameObject fixationCross;      // Optional fixation cross
 //     [SerializeField] private StimulusManager stimulusManager; 
-//     [SerializeField] private DataLogger dataLogger;       // Uncomment if you have a DataLogger script
+//     [SerializeField] private DataLogger dataLogger;         // DataLogger to record trial data
 
 //     [Header("Task Settings")]
 //     [SerializeField] private int totalTrials = 10;
@@ -27,64 +31,65 @@
 //         StartCoroutine(RunTrials());
 //     }
 
-//  private IEnumerator RunTrials()
-// {
-//     for (int trialIndex = 0; trialIndex < totalTrials; trialIndex++)
+//     private IEnumerator RunTrials()
 //     {
-//         // 1. Fixation Phase
-//         if (fixationCross != null)
-//             fixationCross.SetActive(true);
-
-//         yield return new WaitForSeconds(fixationDuration);
-
-//         if (fixationCross != null)
-//             fixationCross.SetActive(false);
-
-//         // 2. Request a new stimulus from the StimulusManager
-//         currentTrialData = stimulusManager.SetupTrial(trialIndex);
-
-//         // 3. Wait for user input (via VR interaction) or until stimulusDuration expires
-//         responded = false;
-//         trialStartTime = Time.time;
-//         float reactionTime = 0f;
-
-//         // Wait until the user responds (which should set 'responded' via UserChoseColor) or timeout
-//         while (!responded && (Time.time - trialStartTime < stimulusDuration))
+//         for (int trialIndex = 0; trialIndex < totalTrials; trialIndex++)
 //         {
-//             yield return null;
+//             // 1. Fixation Phase
+//             if (fixationCross != null)
+//                 fixationCross.SetActive(true);
+
+//             yield return new WaitForSeconds(fixationDuration);
+
+//             if (fixationCross != null)
+//                 fixationCross.SetActive(false);
+
+//             // 2. Request a new stimulus from the StimulusManager
+//             currentTrialData = stimulusManager.SetupTrial(trialIndex);
+
+//             // 3. Wait for user input (via VR interaction) or until stimulusDuration expires
+//             responded = false;
+//             trialStartTime = Time.time;
+//             float reactionTime = 0f;
+
+//             // Wait until the user responds (via UserChoseColor) or timeout
+//             while (!responded && (Time.time - trialStartTime < stimulusDuration))
+//             {
+//                 yield return null;
+//             }
+
+//             // If time expires without a response, record a timeout.
+//             if (!responded)
+//             {
+//                 reactionTime = stimulusDuration;
+//                 currentTrialData.responded = false;
+//                 currentTrialData.reactionTime = reactionTime;
+//                 currentTrialData.isCorrect = false;
+//                 currentTrialData.timedOut = true;
+//                 currentTrialData.userChosenColor = ""; // or "No Response"
+//                 Debug.Log($"Trial {trialIndex} timed out.");
+//             }
+
+//             // 4. Feedback (simple console message)
+//             if (currentTrialData.isCorrect)
+//                 Debug.Log($"Trial {trialIndex} Feedback: Correct!");
+//             else
+//                 Debug.Log($"Trial {trialIndex} Feedback: Incorrect!");
+
+//             yield return new WaitForSeconds(feedbackDuration);
+
+//             // 5. Clean up the stimulus
+//             stimulusManager.Cleanup();
+
+//             // 6. Log data (if using DataLogger)
+//             if (dataLogger != null)
+//             {
+//                 dataLogger.LogTrial(currentTrialData);
+//             }
 //         }
 
-//         // If time expires without a response, record a timeout.
-//         if (!responded)
-//         {
-//             reactionTime = stimulusDuration;
-//             currentTrialData.responded = false;
-//             currentTrialData.reactionTime = reactionTime;
-//             currentTrialData.isCorrect = false;
-//             Debug.Log($"Trial {trialIndex} timed out.");
-//         }
-
-//         // 4. Feedback (simple console message)
-//         if (currentTrialData.isCorrect)
-//             Debug.Log($"Trial {trialIndex} Feedback: Correct!");
-//         else
-//             Debug.Log($"Trial {trialIndex} Feedback: Incorrect!");
-
-//         yield return new WaitForSeconds(feedbackDuration);
-
-//         // 5. Clean up the stimulus
-//         stimulusManager.Cleanup();
-
-//         // 6. Log data (if using DataLogger)
-//         if (dataLogger != null)
-//         {
-//             dataLogger.LogTrial(currentTrialData);
-//         }
+//         Debug.Log("All trials finished!");
 //     }
-
-//     Debug.Log("All trials finished!");
-// }
-
 
 //     /// <summary>
 //     /// This method is called by the VR color choice objects (via their ColorChoiceHandler) when the user selects a color.
@@ -98,17 +103,20 @@
 //             responded = true;
 //             float reactionTime = Time.time - trialStartTime;
 
-//             // The correct answer is the font color as defined in the current trial data.
-//             bool correct = (chosenColor == currentTrialData.fontColorWord);
+//             // The correct answer is the font color defined in the current trial data.
+//             bool correct = (chosenColor.ToUpper() == currentTrialData.fontColorWord.ToUpper());
 
 //             currentTrialData.responded = true;
 //             currentTrialData.reactionTime = reactionTime;
 //             currentTrialData.isCorrect = correct;
+//             currentTrialData.timedOut = false;
+//             currentTrialData.userChosenColor = chosenColor;
 
 //             Debug.Log($"User chose {chosenColor}. Correct answer: {currentTrialData.fontColorWord}. Reaction time: {reactionTime:F2} sec. " + (correct ? "Correct!" : "Incorrect!"));
 //         }
 //     }
 // }
+
 
 
 
@@ -136,6 +144,9 @@ public class TrialManager : MonoBehaviour
     private float trialStartTime = 0f;
     private StroopData currentTrialData;
 
+    // New: store reference to the last selected cube for feedback
+    private GameObject lastSelectedCube;
+
     private void Start()
     {
         StartCoroutine(RunTrials());
@@ -157,12 +168,12 @@ public class TrialManager : MonoBehaviour
             // 2. Request a new stimulus from the StimulusManager
             currentTrialData = stimulusManager.SetupTrial(trialIndex);
 
-            // 3. Wait for user input (via VR interaction) or until stimulusDuration expires
+            // Reset response tracking and record the start time
             responded = false;
             trialStartTime = Time.time;
-            float reactionTime = 0f;
+            lastSelectedCube = null;  // Reset the reference
 
-            // Wait until the user responds (via UserChoseColor) or timeout
+            // 3. Wait for user input (via VR interaction) or until stimulusDuration expires
             while (!responded && (Time.time - trialStartTime < stimulusDuration))
             {
                 yield return null;
@@ -171,21 +182,34 @@ public class TrialManager : MonoBehaviour
             // If time expires without a response, record a timeout.
             if (!responded)
             {
-                reactionTime = stimulusDuration;
                 currentTrialData.responded = false;
-                currentTrialData.reactionTime = reactionTime;
+                currentTrialData.reactionTime = stimulusDuration;
                 currentTrialData.isCorrect = false;
                 currentTrialData.timedOut = true;
                 currentTrialData.userChosenColor = ""; // or "No Response"
                 Debug.Log($"Trial {trialIndex} timed out.");
             }
 
-            // 4. Feedback (simple console message)
-            if (currentTrialData.isCorrect)
-                Debug.Log($"Trial {trialIndex} Feedback: Correct!");
+            // 4. Provide feedback by lighting up the selected cube
+            // Here we use the lastSelectedCube reference set by UserChoseColor().
+            if (lastSelectedCube != null)
+            {
+                FeedbackHandler feedbackHandler = lastSelectedCube.GetComponent<FeedbackHandler>();
+                if (feedbackHandler != null)
+                {
+                    feedbackHandler.ShowFeedback(currentTrialData.isCorrect);
+                }
+                else
+                {
+                    Debug.LogWarning("FeedbackHandler not found on " + lastSelectedCube.name);
+                }
+            }
             else
-                Debug.Log($"Trial {trialIndex} Feedback: Incorrect!");
+            {
+                Debug.LogWarning("No cube was selected during Trial " + trialIndex);
+            }
 
+            // Optionally, wait for feedbackDuration to let the visual feedback remain visible
             yield return new WaitForSeconds(feedbackDuration);
 
             // 5. Clean up the stimulus
@@ -203,17 +227,17 @@ public class TrialManager : MonoBehaviour
 
     /// <summary>
     /// This method is called by the VR color choice objects (via their ColorChoiceHandler) when the user selects a color.
-    /// It records the reaction time and determines if the choice was correct.
+    /// It records the reaction time, the selected cube (for feedback), and determines if the choice was correct.
     /// </summary>
     /// <param name="chosenColor">The color chosen by the user (e.g., "RED")</param>
-    public void UserChoseColor(string chosenColor)
+    /// <param name="selectedCube">The GameObject (the cube) that was selected.</param>
+    public void UserChoseColor(string chosenColor, GameObject selectedCube)
     {
         if (!responded)
         {
             responded = true;
             float reactionTime = Time.time - trialStartTime;
 
-            // The correct answer is the font color defined in the current trial data.
             bool correct = (chosenColor.ToUpper() == currentTrialData.fontColorWord.ToUpper());
 
             currentTrialData.responded = true;
@@ -222,7 +246,11 @@ public class TrialManager : MonoBehaviour
             currentTrialData.timedOut = false;
             currentTrialData.userChosenColor = chosenColor;
 
-            Debug.Log($"User chose {chosenColor}. Correct answer: {currentTrialData.fontColorWord}. Reaction time: {reactionTime:F2} sec. " + (correct ? "Correct!" : "Incorrect!"));
+            lastSelectedCube = selectedCube;
+            Debug.Log($"User chose {chosenColor}. Correct answer: {currentTrialData.fontColorWord}. Reaction time: {reactionTime:F2} sec. " +
+                    (correct ? "Correct!" : "Incorrect!"));
+            Debug.Log("Last selected cube is: " + (lastSelectedCube != null ? lastSelectedCube.name : "null"));
         }
     }
+
 }
