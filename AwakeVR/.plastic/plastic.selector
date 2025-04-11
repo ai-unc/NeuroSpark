@@ -1,4 +1,0 @@
-repository "AwakeVR@vondoste@cloud"
-  path "/"
-    br "/main"
-    co "/main"
