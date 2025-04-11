@@ -428,6 +428,9 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.DeviceSimulator
             // Start with the headset enabled
             OnSetMouseMode();
             OnActivateHeadsetDevice();
+
+            // Disable the UI
+            OnClickCloseSimulatorUIPanel();
         }
 
         void InitColorTheme()
